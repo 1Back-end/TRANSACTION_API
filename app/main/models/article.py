@@ -42,3 +42,15 @@ def __repr__(self) -> str:
          return f"Article(uuid_article={self.uuid_article!r}, photo_article={self.photo_article!r},
          name_article={self.name_article!r},price_article={self.price_article!r},
          description_article={self.description_article!r},date_modified={self.date_modified!r}"
+
+@event.listens_for(Article, 'before_insert')
+def update_created_modified_on_create_listener(mapper, connection, target):
+    """ Event listener that runs before a record is updated, and sets the creation/modified field accordingly."""
+    target.date_added = datetime.now()
+    target.date_modified = datetime.now()
+
+
+@event.listens_for(Article, 'before_update')
+def update_modified_on_update_listener(mapper, connection, target):
+    """ Event listener that runs before a record is updated, and sets the modified field accordingly."""
+    target.date_modified = datetime.now()
