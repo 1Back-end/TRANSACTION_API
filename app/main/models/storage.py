@@ -5,7 +5,7 @@ from datetime import datetime
 from sqlalchemy.dialects.postgresql.json import JSONB
 from sqlalchemy import Column, ForeignKey, Integer, String, Text, DateTime,Table
 from app.main.models.db.base_class import Base
-from .article import product_file
+
 
 
 @dataclass
