@@ -40,12 +40,5 @@ images: any = relationship("ArticleFile",backref="storage")
 
 def __repr__(self) -> str:
          return f"Article(uuid_article={self.uuid_article!r}, photo_article={self.photo_article!r},
-     name_article={self.name_article!r},price_article={self.price_article!r},
-     description_article={self.description_article!r},date_modified={self.date_modified!r})"
-
-
-
-
-
-    
-    
+         name_article={self.name_article!r},price_article={self.price_article!r},
+         description_article={self.description_article!r},date_modified={self.date_modified!r}"

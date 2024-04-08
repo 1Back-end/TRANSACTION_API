@@ -1,19 +1,20 @@
 from dataclasses import dataclass
 from enum import Enum
-from sqlalchemy import Column, String, types, DateTime, event,Integer,Text,ForeignKey,Float
+from sqlalchemy import Column, String, types, DateTime, event, Integer, Text, ForeignKey, Float
 from sqlalchemy.orm import relationship
 from datetime import datetime, date
 from .db.base_class import Base
 
+
 @dataclass
 class OrderProduct(Base):
-
     """ Order Products Model for store all products order """
 
     __tablename__ = 'order_products'
 
+
 uuid = Column(String, primary_key=True, unique=True)
-price: float = Column(float,nullable=False,index=True)
+price: float = Column(float, nullable=False, index=True)
 quantity: int = Column(Integer, nullable=True, default=0)
 total_price: float = Column(Float, unique=False, nullable=True, default=0)
 
@@ -24,10 +25,11 @@ order_uuid = Column(String, ForeignKey('orders.uuid', ondelete="CASCADE"), nulla
 order = relationship("Order", foreign_keys=[order_uuid])
 
 date_added: any = Column(DateTime(timezone=True), default=datetime.now())
-date_modified: any = Column(DateTime(timezone=True), default=datetime.now(),onupdate=datetime.now)
+date_modified: any = Column(DateTime(timezone=True), default=datetime.now(), onupdate=datetime.now)
+
 
 def __repr__(self):
-        return '<OrderProducts: uuid: {}>'.format(self.uuid)
+    return '<OrderProducts: uuid: {}>'.format(self.uuid)
 
 
 @event.listens_for(OrderProduct, 'before_insert')
