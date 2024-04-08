@@ -46,6 +46,16 @@ def __repr__(self) -> str:
 
 
 
+@event.listens_for(Article, 'before_insert')
+def update_created_modified_on_create_listener(mapper, connection, target):
+    """ Event listener that runs before a record is updated, and sets the creation/modified field accordingly."""
+    target.date_added = datetime.now()
+    target.date_modified = datetime.now()
 
+
+@event.listens_for(Article, 'before_update')
+def update_modified_on_update_listener(mapper, connection, target):
+    """ Event listener that runs before a record is updated, and sets the modified field accordingly."""
+    target.date_modified = datetime.now()
     
     
