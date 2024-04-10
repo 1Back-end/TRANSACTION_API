@@ -35,16 +35,13 @@ description : str = Column(Text,nullable=True,index=True)
 date_added : datetime = Column(DateTime, nullable=False, default=datetime.now())
 date_modified: datetime = Column(DateTime, nullable=False, default=datetime.now())
 
-images: any = relationship("ArticleFile",backref="storage")
+images: any = relationship("ArticleFile", backref="storage")
 
 
-def __repr__(self) -> str:
-         return f"Article(uuid_article={self.uuid_article!r}, photo_article={self.photo_article!r},
-     name_article={self.name_article!r},price_article={self.price_article!r},
-     description_article={self.description_article!r},date_modified={self.date_modified!r})"
-
-
-
+# def __repr__(self) -> str:
+#          return f"Article(uuid_article={self.uuid_article!r}, photo_article={self.photo_article!r},
+#          name_article={self.name_article!r},price_article={self.price_article!r},
+#          description_article={self.description_article!r},date_modified={self.date_modified!r}"
 
 @event.listens_for(Article, 'before_insert')
 def update_created_modified_on_create_listener(mapper, connection, target):
@@ -57,5 +54,3 @@ def update_created_modified_on_create_listener(mapper, connection, target):
 def update_modified_on_update_listener(mapper, connection, target):
     """ Event listener that runs before a record is updated, and sets the modified field accordingly."""
     target.date_modified = datetime.now()
-    
-    

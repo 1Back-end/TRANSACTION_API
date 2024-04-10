@@ -16,7 +16,7 @@ class ConfigClass(BaseSettings):
     ALGORITHM: str = get_secret("ALGORITHM", 'HS256')
 
     ADMIN_KEY: str = get_secret("ADMIN_KEY", "EpursaKey2024!")
-    API_KEY: str = get_secret("API_KEY", "UQcuyktZo23jmD6KsQPh5A")
+    API_KEY: str = get_secret("API_KEY", "D3EX3vpM3ntm3l9MOdJ")
     ADMIN_USERNAME: str = get_secret("ADMIN_USERNAME", "epursa")
     ADMIN_PASSWORD: str = get_secret("ADMIN_PASSWORD", "hlz5L1yB45g")
 
@@ -35,7 +35,7 @@ class ConfigClass(BaseSettings):
         "pool_pre_ping": True,
         "pool_recycle": SQLALCHEMY_POOL_RECYCLE,
     }
-
+    MINIO_API_URL: Optional[str] = get_secret("MINIO_API_URL", "http://localhost:5305/api/v1/transaction/storages/file/get")
     MINIO_URL: Optional[str] = get_secret("MINIO_URL", "files.epursa.com")
     MINIO_KEY: Optional[str] = get_secret("MINIO_ACCESS_KEY", "RRqw+Q7KXpLpLiOPwWl0jshEzbP5cBEskc5s6slfyBo=")
     MINIO_SECRET: Optional[str] = get_secret("MINIO_SECRET_KEY",
@@ -47,6 +47,7 @@ class ConfigClass(BaseSettings):
     PREFERRED_LANGUAGE: str = get_secret("PREFERRED_LANGUAGE", 'fr')
 
     API_STR: str = get_secret("API_STR", "/api/v1/transaction")
+    AUTH_API_URL: str = get_secret("AUTH_API_URL", "/api/v1/authentication")
 
     PROJECT_NAME: str = get_secret("PROJECT_NAME", "EPURSA TRANSACTION API")
     PROJECT_VERSION: str = get_secret("PROJECT_VERSION", "1.0.0")
@@ -56,6 +57,7 @@ class ConfigClass(BaseSettings):
     REDIS_DB: int = get_secret("REDIS_DB", 2)
     REDIS_CHARSET: str = get_secret("REDIS_CHARSET", "UTF-8")
     REDIS_DECODE_RESPONSES: bool = get_secret("REDIS_DECODE_RESPONSES", True)
+    UPLOADED_FILE_DEST: str = get_secret("UPLOADED_FILE_DEST", "uploads")
 
     LOCAL: bool = os.getenv("LOCAL", True)
 

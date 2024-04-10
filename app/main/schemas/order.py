@@ -4,11 +4,13 @@ from .user import UserBase
 from .order_product import OrderProductBase
 from enum import Enum
 
+
 class OrderStatusType(str, Enum):
     PENDING = "PENDING"
     PAID = "PAID"
     CANCELLED = "CANCELLED"
-   
+
+
 class OrderBase(BaseModel):
     total_quantity: int
     total_price: float
@@ -33,8 +35,7 @@ class Order(OrderBase):
 
     class Config:
         orm_mode = True
-        
-        
-        
+
+
 class OrderDetail(Order):
     pass
