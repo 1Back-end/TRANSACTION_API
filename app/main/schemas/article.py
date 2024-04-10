@@ -1,5 +1,5 @@
 from datetime import datetime
-from typing import Optional
+from typing import Optional, List
 from pydantic import BaseModel
 
 
@@ -20,8 +20,13 @@ class ArticleUpdate(BaseModel):
     description: Optional[str] = None
     storage_uuid: Optional[str] = None
 
-
+class Image(BaseModel):
+    url : str
 class Article(ArticleBase):
+    name: str
+    price: float
+    description: str
+    images : List[Image]
     date_added: datetime
     date_modified: datetime
 
