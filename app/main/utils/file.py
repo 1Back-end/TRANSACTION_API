@@ -5,7 +5,7 @@ from base64 import b64decode
 from mimetypes import MimeTypes
 from fastapi import UploadFile
 from sqlalchemy.orm import Session
-from app.main import Config
+from app.main.core.config import Config
 from app.main.models.storage import Storage
 from app.main.utils.uploads import upload_file
 
@@ -54,12 +54,18 @@ class FileUtils(object):
             self.path_file = os.path.join(Config.UPLOADED_FILE_DEST, self.blob_name)
             self.mimetype = info
             byte = b64decode(base64.split(",")[1], validate=True)
+            print(f"...................print image:{self.path_file}")
             try:
+                print(f"...................try_upload:{self.path_file}")
                 f = open(self.path_file, 'wb')
                 f.write(byte)
                 f.close()
-            except OSError:
+            except OSError as error:
+                print(f"...................image:{self.path_file}")
+                print(f"....................the error: {error}")
+                print(f"...............No mimetype")
                 file_ext = name.rsplit('.', 1)[1] if name else info.split("/")[1]
+                print(f"...............No mimetype :{file_ext}")
                 self.blob_name = f"{uuid_file_name}.{file_ext}"
                 self.path_file = os.path.join(Config.UPLOADED_FILE_DEST, self.blob_name)
                 f = open(self.path_file, 'wb')
@@ -84,7 +90,7 @@ class FileUtils(object):
 
             self.mimetype = MimeTypes().guess_type(os.path.basename(self.path_file))[0]
             if not self.mimetype:
-                print("...............No mimetype")
+                # print("...............No mimetype")
                 file_ext = name.rsplit('.', 1)[1]
                 if file_ext and file_ext.lower() == "msg":
                     self.mimetype = "application/octet-stream"

@@ -15,5 +15,8 @@ class AuthService:
     def __init__(self):
         pass
 
-    # @staticmethod
+    @staticmethod
+    def get_auth_token(cls,) -> bool:
+        return True
+
 

@@ -1,5 +1,5 @@
 from datetime import datetime
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 from .user import UserBase
 from .order_product import OrderProductBase
 from enum import Enum
@@ -33,8 +33,7 @@ class Order(OrderBase):
     date_added: datetime
     date_modified: datetime
 
-    class Config:
-        orm_mode = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 class OrderDetail(Order):

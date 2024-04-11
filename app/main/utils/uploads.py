@@ -2,7 +2,7 @@ from minio import Minio
 
 from minio.error import S3Error
 
-from app.main import Config
+from app.main.core.config import Config
 
 minioClient = Minio(Config.MINIO_URL,
                     access_key=Config.MINIO_KEY,

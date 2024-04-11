@@ -35,7 +35,7 @@ class ConfigClass(BaseSettings):
         "pool_pre_ping": True,
         "pool_recycle": SQLALCHEMY_POOL_RECYCLE,
     }
-    MINIO_API_URL: Optional[str] = get_secret("MINIO_API_URL", "http://localhost:5305/api/v1/transaction/storages/file/get")
+    MINIO_API_URL: Optional[str] = get_secret("MINIO_API_URL", "http://localhost:5306/api/v1/transaction/storages/file/get")
     MINIO_URL: Optional[str] = get_secret("MINIO_URL", "files.epursa.com")
     MINIO_KEY: Optional[str] = get_secret("MINIO_ACCESS_KEY", "RRqw+Q7KXpLpLiOPwWl0jshEzbP5cBEskc5s6slfyBo=")
     MINIO_SECRET: Optional[str] = get_secret("MINIO_SECRET_KEY",
@@ -47,7 +47,7 @@ class ConfigClass(BaseSettings):
     PREFERRED_LANGUAGE: str = get_secret("PREFERRED_LANGUAGE", 'fr')
 
     API_STR: str = get_secret("API_STR", "/api/v1/transaction")
-    AUTH_API_URL: str = get_secret("AUTH_API_URL", "/api/v1/authentication")
+    AUTH_API_URL: str = get_secret("AUTH_API_URL", "http://localhost:5305/api/v1/authentication")
 
     PROJECT_NAME: str = get_secret("PROJECT_NAME", "EPURSA TRANSACTION API")
     PROJECT_VERSION: str = get_secret("PROJECT_VERSION", "1.0.0")

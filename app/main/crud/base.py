@@ -1,9 +1,8 @@
-from typing import Any, Dict, Generic, Optional, Type, TypeVar, Union
 import math
 from fastapi.encoders import jsonable_encoder
 from pydantic import BaseModel
+from typing import Any, Dict, Generic, Optional, Type, TypeVar, Union
 from sqlalchemy.orm import Session
-from sqlalchemy import or_
 
 from app.main.models.db.base_class import Base
 from app.main import schemas, models
@@ -24,36 +23,15 @@ class CRUDBase(Generic[ModelType, CreateSchemaType, UpdateSchemaType]):
         """
         self.model = model
 
-    def get(self, db: Session, id: Any) -> Optional[ModelType]:
-        return db.query(self.model).filter(self.model.id == id).first()
+    def get(self, db: Session, uuid: Any) -> Optional[ModelType]:
+        return db.query(self.model).filter(self.model.uuid == uuid).first()
 
     def get_multi(
-            self, db: Session, *, page: int = 0, per_page: int = 20, keyword: str, order: str = "desc",
-            role_uuid: str = None, order_field: str = "date_added"
+            self, db: Session, *, page: int = 0, per_page: int = 20
     ) -> schemas.DataList:
 
-        record_query = db.query(models.User).filter(models.User.status != models.UserStatusType.DELETED)
-
-        if role_uuid:
-            record_query = record_query.filter(
-                or_(models.User.role_uuid == role_uuid, models.User.creation_assigned_role_uuid == role_uuid))
-
-        record_query = record_query.filter(or_(
-            models.User.email.ilike('%' + str(keyword) + '%'),
-            models.User.firstname.ilike('%' + str(keyword) + '%'),
-            models.User.lastname.ilike('%' + str(keyword) + '%'),
-        ))
-
-        total = record_query.count()
-
-        if order in ["asc", "ASC"]:
-            record_query = record_query.order_by(getattr(models.User, order_field).asc())
-
-        if order in ["desc", "DESC"]:
-            record_query = record_query.order_by(getattr(models.User, order_field).desc())
-
-        result = record_query.offset((page - 1) * per_page).limit(per_page).all()
-
+        total = db.query(self.model).count()
+        result = db.query(self.model).offset((page - 1) * per_page).limit(per_page).all()
         return schemas.DataList(
             total=total,
             pages=math.ceil(total / per_page),
@@ -84,14 +62,15 @@ class CRUDBase(Generic[ModelType, CreateSchemaType, UpdateSchemaType]):
             update_data = obj_in.dict(exclude_unset=True)
         for field in obj_data:
             if field in update_data:
+                print(field)
                 setattr(db_obj, field, update_data[field])
         db.add(db_obj)
         db.commit()
         db.refresh(db_obj)
         return db_obj
 
-    def remove(self, db: Session, *, id: int) -> ModelType:
-        obj = db.query(self.model).get(id)
+    def remove(self, db: Session, *, uuid: int) -> ModelType:
+        obj = db.query(self.model).get(uuid)
         db.delete(obj)
         db.commit()
         return obj

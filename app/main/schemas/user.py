@@ -1,7 +1,7 @@
 from datetime import datetime, date
 from enum import Enum
 from typing import Optional
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
 
 class UserRoleBase(BaseModel):
@@ -16,8 +16,7 @@ class UserRoleCreate(UserRoleBase):
 class UserRole(UserRoleBase):
     id: int
 
-    class Config:
-        orm_mode = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 class UserStatusType(str, Enum):
@@ -52,8 +51,7 @@ class User(UserBase):
     uuid: str
     roles: Optional[UserRole] = []
 
-    class Config:
-        orm_mode = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 class UserDetail(User):

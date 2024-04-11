@@ -1,6 +1,6 @@
 from datetime import datetime
 from typing import Any
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
 
 class RoleBase(BaseModel):
@@ -21,8 +21,7 @@ class Role(RoleBase):
     date_added: datetime
     date_modified: datetime
 
-    class Config:
-        orm_mode = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 class RoleDetail(Role):

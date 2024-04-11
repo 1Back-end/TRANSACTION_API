@@ -1,6 +1,6 @@
 from datetime import datetime
 from typing import Optional, List
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
 
 class ArticleBase(BaseModel):
@@ -30,8 +30,7 @@ class Article(ArticleBase):
     date_added: datetime
     date_modified: datetime
 
-    class Config:
-        orm_mode = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 class ArticleDetail(Article):

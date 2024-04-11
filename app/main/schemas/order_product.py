@@ -1,5 +1,7 @@
 from datetime import datetime
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
+
+
 from .article import ArticleBase
 from .order import OrderBase
 
@@ -27,8 +29,7 @@ class OrderProduct(OrderProductBase):
     date_added: datetime
     date_modified: datetime
 
-    class Config:
-        orm_mode = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 class OrderProductDetail(OrderProduct):
