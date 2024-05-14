@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="Tradly@localhost" uuid="0adbfec4-7f14-45b7-80de-90aa19b01eb0">
+    <data-source source="LOCAL" name="transaction_epursa@localhost" uuid="0d0e4cd9-87dc-4c74-8375-be7ee4bfc062">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://localhost:5432/Tradly</jdbc-url>
+      <jdbc-url>jdbc:postgresql://localhost:5432/transaction_epursa</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>

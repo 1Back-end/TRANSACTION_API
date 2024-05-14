@@ -32,7 +32,7 @@ class Article(Base):
     date_added: datetime = Column(DateTime, nullable=False, default=datetime.now())
     date_modified: datetime = Column(DateTime, nullable=False, default=datetime.now())
 
-    images: any = relationship("ArticleFile", secondary=ArticleFile, backref="storage")
+    images: any = relationship("ArticleFile", backref="storage")
 
 
 # def __repr__(self) -> str:

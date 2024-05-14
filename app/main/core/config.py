@@ -24,8 +24,8 @@ class ConfigClass(BaseSettings):
     ACCESS_TOKEN_EXPIRE_MINUTES: int = int(get_secret("ACCESS_TOKEN_EXPIRE_MINUTES", 60 * 24 * 365))
 
     SQLALCHEMY_DATABASE_URL: str = get_secret("SQLALCHEMY_DATABASE_URL",
-                                              'postgresql://postgres:KmLus48*usT23@localhost:5432'
-                                              '/Tradly')
+                                              'postgresql://postgres:postgres109@localhost:5432'
+                                              '/transaction_epursa')
 
     SQLALCHEMY_POOL_SIZE: int = 100
     SQLALCHEMY_MAX_OVERFLOW: int = 0
@@ -35,14 +35,14 @@ class ConfigClass(BaseSettings):
         "pool_pre_ping": True,
         "pool_recycle": SQLALCHEMY_POOL_RECYCLE,
     }
-    MINIO_API_URL: Optional[str] = get_secret("MINIO_API_URL", "http://localhost:5306/api/v1/transaction/storages/file/get")
-    MINIO_URL: Optional[str] = get_secret("MINIO_URL", "files.epursa.com")
-    MINIO_KEY: Optional[str] = get_secret("MINIO_ACCESS_KEY", "RRqw+Q7KXpLpLiOPwWl0jshEzbP5cBEskc5s6slfyBo=")
-    MINIO_SECRET: Optional[str] = get_secret("MINIO_SECRET_KEY",
-                                             "KXpD0n0LRRqZfHoskTjDe6SMqcANAkflmmfCFyfGXN7r9AE2o/4pOht"
-                                             "+n1jjogmfCFyfGXD0n0N7r9AEDa0kpxfiw==")
+    MINIO_API_URL: Optional[str] = get_secret("MINIO_API_URL", "http://localhost:5306/api/v1/transaction/storages"
+                                                               "/file/get")
+    MINIO_URL: Optional[str] = get_secret("MINIO_URL", "45.130.104.46:9009")
+    MINIO_ACCESS_KEY: Optional[str] = get_secret("MINIO_ACCESS_KEY", "WlsCK$gS7CTqhmM@x0jshEzsCK$gTqSM@7CTdc3hTdc3mxlfyBo=")
+    MINIO_SECRET_KEY: Optional[str] = get_secret("MINIO_SECRET_KEY","jDe6SMqmmfCFyfGXD0n0N7r9AE2oKXyf/4pOht+GXDpLRRCF0n0N7r9AEqZfHoskTn1jjogcANAkflmfDa0kpxfiw==")
     MINIO_BUCKET: str = get_secret("MINIO_BUCKET", "develop")
-    MINIO_SECURE: bool = True
+    MINIO_SECURE: bool = False
+
 
     PREFERRED_LANGUAGE: str = get_secret("PREFERRED_LANGUAGE", 'fr')
 

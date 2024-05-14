@@ -6,20 +6,6 @@ from sqlalchemy.orm import relationship
 from .db.base_class import Base
 
 
-@dataclass
-class UserRole(Base):
-
-    """ Users roles Model for store all users roles """
-
-    __tablename__ = 'users_roles'
-
-user_uuid = Column(String, ForeignKey('users.uuid', ondelete="CASCADE"), nullable=True)
-user = relationship("User", foreign_keys=[user_uuid])
-
-role_uuid = Column(String, ForeignKey('roles.uuid', ondelete="CASCADE"), nullable=True)
-role = relationship("Role", foreign_keys=[role_uuid],backref="roles")
-
-    
     
 class UserStatusType(str, Enum):
     ACTIVED = "ACTIVED"
@@ -44,18 +30,6 @@ class User(Base):
     last_name: str = Column(String(100), nullable=False, default="")
     email: str = Column(String(100), nullable=False, default="", index=True)
     address: str = Column(String(100), nullable=False, default="")
-    birthday: date = Column(DateTime, nullable=True, default=None)
-    
-    roles: any = relationship("UserRole", backref="role")
-    
-    otp: str = Column(String(5), nullable=True, default="")
-    otp_expired_at: datetime = Column(DateTime, nullable=True, default=None)
-
-    otp_password: str = Column(String(5), nullable=True, default="")
-    otp_password_expired_at: datetime = Column(DateTime, nullable=True, default=None)
-
-    password_hash: str = Column(String(100), nullable=True, default="")
-    status = Column(types.Enum(UserStatusType), index=True, nullable=False, default=UserStatusType.UNACTIVED)
 
     date_added: datetime = Column(DateTime, nullable=False, default=datetime.now())
     date_modified: datetime = Column(DateTime, nullable=False, default=datetime.now())

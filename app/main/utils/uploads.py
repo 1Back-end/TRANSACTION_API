@@ -5,8 +5,8 @@ from minio.error import S3Error
 from app.main.core.config import Config
 
 minioClient = Minio(Config.MINIO_URL,
-                    access_key=Config.MINIO_KEY,
-                    secret_key=Config.MINIO_SECRET,
+                    access_key=Config.MINIO_ACCESS_KEY,
+                    secret_key=Config.MINIO_SECRET_KEY,
                     secure=Config.MINIO_SECURE)
 
 
