@@ -6,8 +6,8 @@ from pydantic import BaseModel, ConfigDict
 class ArticleBase(BaseModel):
     name: str
     price: float
-    description: str
-    storage_uuid: str
+    description: str | None = None
+    storage_uuid: str | None = None
 
 
 class ArticleCreate(ArticleBase):

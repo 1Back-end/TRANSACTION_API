@@ -21,7 +21,7 @@ class OrderProduct(Base):
     article = relationship("Article", foreign_keys=[article_uuid])
 
     order_uuid = Column(String, ForeignKey('orders.uuid', ondelete="CASCADE"), nullable=True)
-    order = relationship("Order", foreign_keys=[order_uuid])
+    order = relationship("Order", foreign_keys=[order_uuid], back_populates="order_product")
 
     date_added: any = Column(DateTime(timezone=True), default=datetime.now())
     date_modified: any = Column(DateTime(timezone=True), default=datetime.now(), onupdate=datetime.now)

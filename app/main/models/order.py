@@ -21,7 +21,7 @@ class Order(Base):
     total_price: float = Column(Float, nullable=False, index=True)
     status = Column(types.Enum(OrderStatusType), index=True, nullable=False, default=OrderStatusType.PENDING)
 
-    articles: any = relationship("OrderProduct", backref="order")
+    order_product: any = relationship("OrderProduct", back_populates="order")
 
     user_uuid = Column(String, ForeignKey('users.uuid', ondelete="CASCADE"), nullable=True)
     user = relationship("User", foreign_keys=[user_uuid])

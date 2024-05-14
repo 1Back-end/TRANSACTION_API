@@ -1,7 +1,9 @@
 import json
 import requests
+
 from app.main import schemas
 from app.main.core.config import Config
+from typing import Any
 
 
 class AuthService:
@@ -15,8 +17,15 @@ class AuthService:
     def __init__(self):
         pass
 
-    @staticmethod
-    def get_auth_token(cls,) -> bool:
-        return True
+    @classmethod
+    def get_auth_token(cls, token: str) -> Any:
+        res = requests.get(f"{cls.url}/utils/validate-token/{Config.API_KEY}/{token}", json.dumps({
+        }), headers=cls.headers)
+        response = res.json()
+        print(f"................................{response}")
+        if res.status_code in [200]:
+            return response
+        return False
 
 
+auth = AuthService()
