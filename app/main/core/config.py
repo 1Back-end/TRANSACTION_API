@@ -12,10 +12,10 @@ def get_secret(secret_name, default):
 
 
 class ConfigClass(BaseSettings):
-    SECRET_KEY: str = get_secret("SECRET_KEY", '9JKIDSoTJTTkGeecMPkLH-BpeFvE5pJi_Wb0Q9H1iPouMJ0')
+    SECRET_KEY: str = get_secret("SECRET_KEY", 'H5zQCLkaY4d8hExSjghGyaJMm7XtCKNsab88JDy12M')
     ALGORITHM: str = get_secret("ALGORITHM", 'HS256')
 
-    ADMIN_KEY: str = get_secret("ADMIN_KEY", "EpursaKey2024!")
+    ADMIN_KEY: str = get_secret("ADMIN_KEY", "EpursaKey2024!*")
     API_KEY: str = get_secret("API_KEY", "D3EX3vpM3ntm3l9MOdJ")
     ADMIN_USERNAME: str = get_secret("ADMIN_USERNAME", "epursa")
     ADMIN_PASSWORD: str = get_secret("ADMIN_PASSWORD", "hlz5L1yB45g")
@@ -25,7 +25,7 @@ class ConfigClass(BaseSettings):
 
     SQLALCHEMY_DATABASE_URL: str = get_secret("SQLALCHEMY_DATABASE_URL",
                                               'postgresql://postgres:postgres109@localhost:5432'
-                                              '/transaction_epursa')
+                                               '/transaction_epursa')
 
     SQLALCHEMY_POOL_SIZE: int = 100
     SQLALCHEMY_MAX_OVERFLOW: int = 0

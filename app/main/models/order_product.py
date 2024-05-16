@@ -12,16 +12,16 @@ class OrderProduct(Base):
 
     __tablename__ = 'order_products'
 
-    uuid = Column(String, primary_key=True, unique=True)
+    uuid: str = Column(String, primary_key=True, unique=True)
     price: float = Column(Float, nullable=False, index=True)
     quantity: int = Column(Integer, nullable=True, default=0)
     total_price: float = Column(Float, unique=False, nullable=True, default=0)
 
-    article_uuid = Column(String, ForeignKey('articles.uuid', ondelete="CASCADE"), nullable=True)
+    article_uuid: str = Column(String, ForeignKey('articles.uuid', ondelete="CASCADE"), nullable=True)
     article = relationship("Article", foreign_keys=[article_uuid])
 
-    order_uuid = Column(String, ForeignKey('orders.uuid', ondelete="CASCADE"), nullable=True)
-    order = relationship("Order", foreign_keys=[order_uuid])
+    order_uuid: str = Column(String, ForeignKey('orders.uuid', ondelete="CASCADE"), nullable=True)
+    order = relationship("Order", foreign_keys=[order_uuid], back_populates="order_products")
 
     date_added: any = Column(DateTime(timezone=True), default=datetime.now())
     date_modified: any = Column(DateTime(timezone=True), default=datetime.now(), onupdate=datetime.now)

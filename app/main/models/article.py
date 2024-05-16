@@ -1,19 +1,14 @@
 from dataclasses import dataclass
-from sqlalchemy import Column, String, DateTime, event, Text, ForeignKey, DECIMAL
+from sqlalchemy import Column, String, DateTime, event, Text, ForeignKey, DECIMAL, Table
 from sqlalchemy.orm import relationship
 from datetime import datetime
 from .db.base_class import Base
+from sqlalchemy.ext.hybrid import hybrid_property
 
-
-@dataclass
-class ArticleFile(Base):
-    """ Article Files Model for store all Article File """
-
-    __tablename__ = 'articles_files'
-
-    article_uuid = Column(String, ForeignKey('articles.uuid', ondelete="CASCADE"), nullable=True, primary_key=True)
-
-    storage_uuid = Column(String, ForeignKey('storages.uuid', ondelete="CASCADE"), nullable=True, primary_key=True)
+# Association table for the many-to-many relationship between Article and ArticleFile
+# article_files = Table('article_files', Base.metadata,
+#
+#                       )
 
 
 @dataclass
@@ -32,13 +27,8 @@ class Article(Base):
     date_added: datetime = Column(DateTime, nullable=False, default=datetime.now())
     date_modified: datetime = Column(DateTime, nullable=False, default=datetime.now())
 
-    images: any = relationship("ArticleFile", backref="storage")
+    images = relationship("ArticleFile", backref="article")
 
-
-# def __repr__(self) -> str:
-#          return f"Article(uuid_article={self.uuid_article!r}, photo_article={self.photo_article!r},
-#          name_article={self.name_article!r},price_article={self.price_article!r},
-#          description_article={self.description_article!r},date_modified={self.date_modified!r}"
 
 @event.listens_for(Article, 'before_insert')
 def update_created_modified_on_create_listener(mapper, connection, target):
@@ -51,3 +41,20 @@ def update_created_modified_on_create_listener(mapper, connection, target):
 def update_modified_on_update_listener(mapper, connection, target):
     """ Event listener that runs before a record is updated, and sets the modified field accordingly."""
     target.date_modified = datetime.now()
+
+
+@dataclass
+class ArticleFile(Base):
+    """
+    ArticleFile model for storing images related to articles.
+    """
+
+    __tablename__ = 'articles_files'
+
+    article_uuid = Column(String, ForeignKey('articles.uuid', ondelete="CASCADE"), nullable=False, primary_key=True)
+    storage_uuid = Column(String, ForeignKey('storages.uuid', ondelete="CASCADE"), nullable=False, primary_key=True)
+    file = relationship("Storage", backref="articles_files")
+
+    @hybrid_property
+    def url(self):
+        return self.file.url if self.file else None

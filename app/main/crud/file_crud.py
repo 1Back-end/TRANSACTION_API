@@ -10,7 +10,8 @@ from app.main.utils.file import FileUtils
 
 
 class CRUDFile(CRUDBase[File, ArticleCreate, ArticleUpdate]):
-    def store_file(self, db: Session, base_64: Any, name: str = None) -> Storage:
+    @classmethod
+    def store_file(cls, db: Session, base_64: Any, name: str = None) -> Storage:
         if "#" in name:
             name = name.replace("", "$§£")
         file_manager = FileUtils(base64=base_64, name=name)

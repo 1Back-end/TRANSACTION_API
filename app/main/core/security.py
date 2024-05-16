@@ -2,6 +2,8 @@ import re
 import string
 import random
 from random import randint, choice
+import jwt
+from app.main.core.config import Config
 
 ALGORITHM = "HS256"
 
@@ -24,3 +26,13 @@ def generate_code(length=10):
     return final_string
 
 
+def decode_access_token(token: str):
+    try:
+        decoded_token = jwt.decode(token, Config.SECRET_KEY, algorithms=[ALGORITHM])
+        return decoded_token
+    except Exception as e:
+        if token:
+            print("Failed to decode token")
+            print(token)
+            print(e)
+        return None

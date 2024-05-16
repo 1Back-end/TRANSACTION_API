@@ -3,17 +3,21 @@ from fastapi import Depends, HTTPException
 from sqlalchemy.orm import Session
 from app.main import models, schemas
 from app.main.core.dependencies import get_db
+from app.main.crud.article import create_article
 
 router = APIRouter(prefix="/article", tags=["article"])
 
 
-@router.post("")
-def create_article(article: schemas.ArticleCreate, db: Session = Depends(get_db)):
+@router.post("/{token}")
+def articles(articles: list[schemas.ArticleCreate], token: str, db: Session = Depends(get_db)):
     try:
-        db_article = create_article(db=db, article=article)
+        db_article = create_article(db=db, articles=articles, token=token)
         return {"message": "Article created successfully", "article": db_article}
+    except HTTPException as e:
+        raise e
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        print(e)
+        raise HTTPException(status_code=500, detail="An error has occurred")
 
 
 @router.get("/{uuid}", response_model=schemas.Article)

@@ -1,17 +1,22 @@
 from datetime import datetime
+from typing import Optional
+
 from pydantic import BaseModel, ConfigDict
 
+from .article import Article
+from ..models import OrderStatusType
 
-from .article import ArticleBase
-from .order import OrderBase
+
+class OrderBase(BaseModel):
+    total_quantity: int
+    total_price: float
+    status: OrderStatusType
+    user_uuid: str
 
 
 class OrderProductBase(BaseModel):
-    price: float
     quantity: int
-    total_price: float
     article_uuid: str
-    order_uuid: str
 
 
 class OrderProductCreate(OrderProductBase):
@@ -24,8 +29,7 @@ class OrderProductUpdate(OrderProductBase):
 
 class OrderProduct(OrderProductBase):
     uuid: str
-    article: ArticleBase
-    order: OrderBase
+    article: Optional[Article] = None
     date_added: datetime
     date_modified: datetime
 

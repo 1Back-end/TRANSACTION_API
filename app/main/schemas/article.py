@@ -6,8 +6,8 @@ from pydantic import BaseModel, ConfigDict
 class ArticleBase(BaseModel):
     name: str
     price: float
-    description: str
-    storage_uuid: str
+    description: str | None = None
+    storage_uuid: str | None = None
 
 
 class ArticleCreate(ArticleBase):
@@ -20,13 +20,18 @@ class ArticleUpdate(BaseModel):
     description: Optional[str] = None
     storage_uuid: Optional[str] = None
 
+class Storage(BaseModel):
+    url: str
+
 class Image(BaseModel):
-    url : str
+    url: Optional[str]
+
 class Article(ArticleBase):
+    uuid: str
     name: str
     price: float
     description: str
-    images : List[Image]
+    images: List[Image]
     date_added: datetime
     date_modified: datetime
 
