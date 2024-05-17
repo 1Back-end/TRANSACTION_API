@@ -1,0 +1,48 @@
+image: docker:stable
+
+stages:
+  - build_image
+
+build_image:
+  services:
+    - docker:dind
+  variables:
+    DOCKER_HOST: tcp://docker:2375
+    DOCKER_DRIVER: overlay2
+  stage: build_image
+  only:
+    - master
+  script:
+    - docker login $CI_REGISTRY -u $CUSTOM_CI_DEPLOY_USER -p $CUSTOM_CI_DEPLOY_PASSWORD
+    - docker build -t $CI_REGISTRY/kevmaxsarl/epursa/transaction-api:latest .
+    - docker push $CI_REGISTRY/kevmaxsarl/epursa/transaction-api:latest
+
+
+build_develop_image:
+  services:
+    - docker:dind
+  variables:
+    DOCKER_HOST: tcp://docker:2375
+    DOCKER_DRIVER: overlay2
+  stage: build_image
+  only:
+    - develop
+  script:
+    - docker login -u $CUSTOM_CI_DEPLOY_USER -p $CUSTOM_CI_DEPLOY_PASSWORD $CI_REGISTRY
+    - docker build -t $CI_REGISTRY/kevmaxsarl/epursa/transaction-api:develop .
+    - docker push $CI_REGISTRY/kevmaxsarl/epursa/transaction-api:develop
+
+build_staging_image:
+  services:
+    - docker:dind
+  variables:
+    DOCKER_HOST: tcp://docker:2375
+    DOCKER_DRIVER: overlay2
+  stage: build_image
+  only:
+    - staging
+  script:
+    - docker login -u $CUSTOM_CI_DEPLOY_USER -p $CUSTOM_CI_DEPLOY_PASSWORD $CI_REGISTRY
+    - docker build -t $CI_REGISTRY/kevmaxsarl/epursa/transaction-api:staging .
+    - docker push $CI_REGISTRY/kevmaxsarl/epursa/transaction-api:staging
+
