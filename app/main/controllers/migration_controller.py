@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from fastapi import APIRouter, Body, Depends, HTTPException
 from sqlalchemy.orm import Session
 from sqlalchemy import Column, String
-from app.main import schemas
+from app.main import schemas, models
 from app.main.core.config import Config
 from app.main.core import dependencies
 from app.main.models.db.base_class import Base

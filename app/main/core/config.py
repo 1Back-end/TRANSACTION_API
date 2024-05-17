@@ -35,8 +35,8 @@ class ConfigClass(BaseSettings):
         "pool_pre_ping": True,
         "pool_recycle": SQLALCHEMY_POOL_RECYCLE,
     }
-    MINIO_API_URL: Optional[str] = get_secret("MINIO_API_URL", "http://localhost:5306/api/v1/transaction/storages"
-                                                               "/file/get")
+    MINIO_API_URL: Optional[str] = get_secret("MINIO_API_URL", "http://5005/api/v1/transaction/storages"
+                                                               "/file/get/")
     MINIO_URL: Optional[str] = get_secret("MINIO_URL", "45.130.104.46:9009")
     MINIO_ACCESS_KEY: Optional[str] = get_secret("MINIO_ACCESS_KEY", "WlsCK$gS7CTqhmM@x0jshEzsCK$gTqSM@7CTdc3hTdc3mxlfyBo=")
     MINIO_SECRET_KEY: Optional[str] = get_secret("MINIO_SECRET_KEY","jDe6SMqmmfCFyfGXD0n0N7r9AE2oKXyf/4pOht+GXDpLRRCF0n0N7r9AEqZfHoskTn1jjogcANAkflmfDa0kpxfiw==")

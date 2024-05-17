@@ -20,11 +20,14 @@ class ArticleUpdate(BaseModel):
     description: Optional[str] = None
     storage_uuid: Optional[str] = None
 
+
 class Storage(BaseModel):
     url: str
 
+
 class Image(BaseModel):
     url: Optional[str]
+
 
 class Article(ArticleBase):
     uuid: str
