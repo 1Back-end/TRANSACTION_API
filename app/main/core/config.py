@@ -47,7 +47,7 @@ class ConfigClass(BaseSettings):
     PREFERRED_LANGUAGE: str = get_secret("PREFERRED_LANGUAGE", 'fr')
 
     API_STR: str = get_secret("API_STR", "/api/v1/transaction")
-    AUTH_API_URL: str = get_secret("AUTH_API_URL", "http://localhost:5305/api/v1/authentication")
+    AUTH_API_URL: str = get_secret("AUTH_API_URL", "http://45.130.104.46:5005/api/v1/authentication")
 
     PROJECT_NAME: str = get_secret("PROJECT_NAME", "EPURSA TRANSACTION API")
     PROJECT_VERSION: str = get_secret("PROJECT_VERSION", "1.0.0")
