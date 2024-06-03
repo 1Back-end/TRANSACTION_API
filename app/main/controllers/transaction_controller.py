@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 from fastapi import Depends, HTTPException
 from sqlalchemy.orm import Session
-
+from typing import List
 from app.main import models, schemas
 from app.main.core.dependencies import get_db
 from app.main.crud.buyer_info import create_buyer
@@ -35,13 +35,12 @@ def creat_order(order: schemas.OrderCreate, token: str, db: Session = Depends(ge
 @router.get("/order/get/{token}", response_model=schemas.DisplayOrder)
 def get_orders(token: str,
                code: str,
-               uuid: str,
                db: Session = Depends(get_db),
                ):
     try:
-        db_order, user = get_order_products(db=db, token=token, code=code, uuid=uuid)
+        orders = get_order_products(db=db, token=token, code=code)
 
-        return {"order": db_order, "user": user}
+        return orders
     except HTTPException as e:
         raise e
     except Exception as e:

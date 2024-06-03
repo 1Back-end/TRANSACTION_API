@@ -1,6 +1,6 @@
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict
-from .user import UserBase
+from .user import UserCreate
 from .order_product import OrderProductBase, OrderProductCreate, OrderProduct
 from enum import Enum
 
@@ -28,7 +28,7 @@ class OrderUpdate(OrderBase):
 
 class Order(OrderBase):
     uuid: str
-    user: UserBase
+    user: UserCreate
     order_products: list[OrderProductBase]
     date_added: datetime
     date_modified: datetime
@@ -54,4 +54,4 @@ class OrderToDisplay(BaseModel):
 
 class DisplayOrder(BaseModel):
     order: OrderToDisplay
-    user: User
+    user: UserCreate

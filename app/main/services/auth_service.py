@@ -28,11 +28,10 @@ class AuthService:
         return False
 
     @classmethod
-    def get_user(cls, token: str, uuid: str) -> Any:
-        res = requests.get(f"{cls.url}/utils/get_user/{token}/{uuid}", json.dumps({
+    def get_user(cls, token: str) -> Any:
+        res = requests.get(f"{cls.url}/utils/get_user/{token}", json.dumps({
         }), headers=cls.headers,)
         response = res.json()
-        print(f"................................ {response}")
         if res.status_code in [200]:
             return response
         return False

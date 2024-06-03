@@ -1,8 +1,10 @@
+import math
+
 from sqlalchemy.orm import Session
 from app.main import models, schemas
 from fastapi import HTTPException, status
 import uuid
-
+from sqlalchemy import or_
 from app.main.core.security import decode_access_token, generate_code
 from app.main.services import auth
 
@@ -44,13 +46,19 @@ def create_order_products(db: Session, obj_in: schemas.OrderCreate, token: str):
     raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="token is not valid")
 
 
-def get_order_products(db: Session, token: str, code: str, uuid: str):
+def get_order_products(
+        db: Session,
+        token: str,
+        code: str,
+):
     valid_token = auth.get_auth_token(token=token)
     if valid_token is not None:
-        user = auth.get_user(token=token, uuid=uuid)
-        order: models.Order = db.query(models.Order).filter(models.Order.code == code).first()
+        user = auth.get_user(token=token)
+
+        order = db.query(models.Order).filter(models.Order.code == code).first()
         if not order:
             raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="this code is not valid")
-        return order, user
+
+        return {"order": order, "user": user}
 
     raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="token is not valid")
