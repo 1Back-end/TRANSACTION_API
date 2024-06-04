@@ -81,15 +81,23 @@ def get_order_by_uuid(
        db: Session = Depends(get_db),
 ):
 
-    try:
-        order = get_order_with_uuid(
-            db=db,
-            token=token,
-            order_uuid = order_uuid
-        )
+    # try:
+    #     order,user = get_order_with_uuid(
+    #         db=db,
+    #         token=token,
+    #         order_uuid = order_uuid
+    #     )
+    #
+    #     print("====user======",user)
+    #     return order
+    # except HTTPException as e:
+    #     raise e
+    # except Exception as e:
+    #     raise HTTPException(status_code=500, detail=f"{str(e)}")
+    order= get_order_with_uuid(
+        db=db,
+        token=token,
+        order_uuid=order_uuid
+    )
+    return order
 
-        return order
-    except HTTPException as e:
-        raise e
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=f"{str(e)}")

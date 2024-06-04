@@ -3,6 +3,7 @@ from pydantic import BaseModel, ConfigDict
 from .user import UserCreate
 from .order_product import OrderProductBase, OrderProductCreate, OrderProduct
 from enum import Enum
+from .buyer_info import  Buyer
 
 
 class OrderStatusType(str, Enum):
@@ -22,10 +23,6 @@ class OrderCreate(BaseModel):
     order_products: list[OrderProductCreate]
 
 
-class OrderUpdate(OrderBase):
-    pass
-
-
 class Order(OrderBase):
     uuid: str
     user: UserCreate
@@ -34,11 +31,6 @@ class Order(OrderBase):
     date_modified: datetime
 
     model_config = ConfigDict(from_attributes=True)
-
-
-class OrderDetail(Order):
-    pass
-
 
 class User(BaseModel):
     first_name: str
@@ -55,3 +47,7 @@ class OrderToDisplay(BaseModel):
 class DisplayOrder(BaseModel):
     order: OrderToDisplay
     user: UserCreate
+
+class OrderDetail(DisplayOrder):
+    buyer:Buyer
+

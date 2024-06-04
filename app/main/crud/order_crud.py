@@ -124,9 +124,9 @@ def get_order_with_uuid(
     valid_token = auth.get_auth_token(token=token)
     if valid_token is not None:
         order = db.query(models.Order).filter(models.Order.uuid == order_uuid).first()
-        user = auth.get_user(token=token)
-        user_uuid = decode_access_token(token)[""]
-
+        user = auth.get_user(token=token,user_uuid= decode_access_token(token)['sub'])
+        buyer:models.BuyerInfo = order.buyer
         if not order:
             raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="order not found")
-        return order
+        return {"order": order, "user": user,"buyer":buyer}
+
