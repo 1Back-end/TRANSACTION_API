@@ -19,6 +19,10 @@ def articles(articles: list[schemas.ArticleCreate], token: str, db: Session = De
         print(e)
         raise HTTPException(status_code=500, detail="An error has occurred")
 
+@router.get("/articles", response_model=list[schemas.Article])
+def get_all_articles(db: Session = Depends(get_db)):
+    articles = db.query(models.Article).all()
+    return articles
 
 @router.get("/{uuid}", response_model=schemas.Article)
 def get_article(uuid: str, db: Session = Depends(get_db)):
@@ -28,10 +32,6 @@ def get_article(uuid: str, db: Session = Depends(get_db)):
     return db_article
 
 
-@router.get("/articles", response_model=list[schemas.Article])
-def get_all_articles(db: Session = Depends(get_db)):
-    articles = db.query(models.Article).all()
-    return articles
 
 
 @router.put("/{uuid}", response_model=schemas.Article)

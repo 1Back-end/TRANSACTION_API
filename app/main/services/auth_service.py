@@ -22,14 +22,13 @@ class AuthService:
         res = requests.get(f"{cls.url}/utils/validate-token/{token}", json.dumps({
         }), headers=cls.headers,)
         response = res.json()
-        print(f"................................ {response}")
         if res.status_code in [200]:
             return response
         return False
 
     @classmethod
-    def get_user(cls, token: str) -> Any:
-        res = requests.get(f"{cls.url}/utils/get_user/{token}", json.dumps({
+    def get_user(cls, token: str, user_uuid: str) -> Any:
+        res = requests.get(f"{cls.url}/utils/get_user/{token}/{user_uuid}", json.dumps({
         }), headers=cls.headers,)
         response = res.json()
         if res.status_code in [200]:

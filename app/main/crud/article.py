@@ -14,7 +14,6 @@ def get_all_article(db: Session, skip: int = 0, limit: int = 100):
 
 
 def create_article(db: Session, articles: list[schemas.ArticleCreate], token: str) -> list[schemas.Article]:
-
     valid_token = auth.get_auth_token(token=token)
     if valid_token:
         article_storage_uuids = [article.storage_uuid for article in articles]
