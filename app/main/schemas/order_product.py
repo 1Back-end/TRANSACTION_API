@@ -23,10 +23,6 @@ class OrderProductCreate(OrderProductBase):
     pass
 
 
-class OrderProductUpdate(OrderProductBase):
-    pass
-
-
 class OrderProduct(OrderProductBase):
     uuid: str
     article: Optional[Article] = None
@@ -34,7 +30,3 @@ class OrderProduct(OrderProductBase):
     date_modified: datetime
 
     model_config = ConfigDict(from_attributes=True)
-
-
-class OrderProductDetail(OrderProduct):
-    pass

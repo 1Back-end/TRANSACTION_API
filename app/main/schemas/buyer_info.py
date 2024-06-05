@@ -11,7 +11,7 @@ class BuyerBase(BaseModel):
 
 
 class BuyerCreate(BuyerBase):
-    pass
+    order_uuid: str
 
 
 class Buyer(BuyerBase):

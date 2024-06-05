@@ -13,8 +13,11 @@ router = APIRouter(prefix="", tags=["transaction"])
 
 @router.post("/infos_buyer/{token}")
 def save_buyer_information(buyer: schemas.BuyerCreate, token: str, db: Session = Depends(get_db)):
+    order: models.Order = db.query(models.Order).filter(models.Order.uuid == buyer.order_uuid).first()
+    if not order:
+        raise HTTPException(status_code=404, detail="order not found")
     try:
-        db_article = create_buyer(db=db, obj_in=buyer, token=token)
+        db_article = create_buyer(db=db, obj_in=buyer, token=token,order=order)
         return db_article
     except HTTPException as e:
         raise e
@@ -23,7 +26,7 @@ def save_buyer_information(buyer: schemas.BuyerCreate, token: str, db: Session =
 
 
 @router.post("/order/create/{token}")
-def creat_order(order: schemas.OrderCreate, token: str,buyer_uuid:str, db: Session = Depends(get_db)):
+def creat_order(order: schemas.OrderCreate, token: str,buyer_uuid:str =None, db: Session = Depends(get_db)):
     try:
         db_article = create_order_products(db=db, obj_in=order, token=token, buyer_uuid = buyer_uuid)
         return {"message": "Article created successfully", "article": db_article}
@@ -81,15 +84,23 @@ def get_order_by_uuid(
        db: Session = Depends(get_db),
 ):
 
-    try:
-        order = get_order_with_uuid(
-            db=db,
-            token=token,
-            order_uuid = order_uuid
-        )
+    # try:
+    #     order,user = get_order_with_uuid(
+    #         db=db,
+    #         token=token,
+    #         order_uuid = order_uuid
+    #     )
+    #
+    #     print("====user======",user)
+    #     return order
+    # except HTTPException as e:
+    #     raise e
+    # except Exception as e:
+    #     raise HTTPException(status_code=500, detail=f"{str(e)}")
+    order= get_order_with_uuid(
+        db=db,
+        token=token,
+        order_uuid=order_uuid
+    )
+    return order
 
-        return order
-    except HTTPException as e:
-        raise e
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=f"{str(e)}")

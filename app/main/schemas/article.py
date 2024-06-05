@@ -7,7 +7,7 @@ class ArticleBase(BaseModel):
     name: str
     price: float
     description: str | None = None
-    storage_uuid: str | None = None
+    storage_uuid: List[str] | None = None
 
 
 class ArticleCreate(ArticleBase):
@@ -18,7 +18,7 @@ class ArticleUpdate(BaseModel):
     name: Optional[str] = None
     price: Optional[float] = None
     description: Optional[str] = None
-    storage_uuid: Optional[str] = None
+    storage_uuid: Optional[List[str] ] = None
 
 
 class Storage(BaseModel):
