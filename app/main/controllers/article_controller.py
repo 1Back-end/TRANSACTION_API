@@ -16,7 +16,7 @@ def articles(articles: list[schemas.ArticleCreate], token: str, db: Session = De
     except HTTPException as e:
         raise e
     except Exception as e:
-        print(e)
+        print(f"...............................{e}")
         raise HTTPException(status_code=500, detail="An error has occurred")
 
 @router.get("/articles", response_model=list[schemas.Article])

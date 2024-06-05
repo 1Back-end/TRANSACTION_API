@@ -6,7 +6,7 @@ from typing import Any
 from app.main.services import auth
 
 
-def create_buyer(db: Session, obj_in: schemas.BuyerCreate, token: str) -> Any:
+def create_buyer(db: Session, obj_in: schemas.BuyerCreate, token: str,order:models.Order) -> Any:
 
     valid_token = auth.get_auth_token(token=token)
     if valid_token:
@@ -18,8 +18,10 @@ def create_buyer(db: Session, obj_in: schemas.BuyerCreate, token: str) -> Any:
             address=obj_in.address
         )
         db.add(db_obj)
-        db.commit()
+        db.flush()
 
+        order.buyer_uuid = db_obj.uuid
+        db.commit()
         db.refresh(db_obj)
         return db_obj
     raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="token is not valid")
