@@ -87,9 +87,6 @@ def get_order_with_pagination(
             )
         )
         print(orders)
-        if not order:
-            order = "ASC"
-
         if order_type and order_type == 'SELLED':
             orders = orders.filter(models.Order.user_uuid == decode_access_token(token)['sub'])
 
@@ -105,8 +102,13 @@ def get_order_with_pagination(
         if order_status and order_status == OrderStatusType.PENDING:
             orders = orders.filter(models.Order.status == OrderStatusType.PENDING)
 
-        orders = orders.order_by(getattr(models.Order, "date_added", str(order).lower()))
-        print(f".........order:{orders}")
+        if order and order.lower() == "asc":
+            orders = orders.order_by(getattr(models.Order, "date_added").asc())
+
+        if order and order.lower() == "desc":
+            orders = orders.order_by(getattr(models.Order, "date_added").desc())
+
+
         total = orders.count()
         orders = orders.offset((page - 1) * per_page).limit(per_page).all()
         for order in orders:
