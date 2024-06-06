@@ -14,7 +14,7 @@ class OrderProduct(Base):
 
     uuid: str = Column(String, primary_key=True, unique=True)
     price: float = Column(Float, nullable=False, index=True)
-    quantity: int = Column(Integer, nullable=True, default=0)
+    quantity: int = Column(Integer, nullable=True, default=1)
     total_price: float = Column(Float, unique=False, nullable=True, default=0)
 
     article_uuid: str = Column(String, ForeignKey('articles.uuid', ondelete="CASCADE"), nullable=True)

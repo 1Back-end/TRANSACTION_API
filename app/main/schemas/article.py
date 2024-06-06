@@ -33,7 +33,7 @@ class Article(ArticleBase):
     uuid: str
     name: str
     price: float
-    description: str
+    description: str | None = None
     images: List[Image]
     date_added: datetime
     date_modified: datetime

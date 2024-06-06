@@ -2,10 +2,10 @@ from pydantic import BaseModel, ConfigDict
 
 
 class BuyerBase(BaseModel):
-    name: str
-    email: str
-    phone: str
-    address: str
+    name: str | None = None
+    email: str | None = None
+    phone: str | None = None
+    address: str | None = None
 
 
 class BuyerCreate(BuyerBase):

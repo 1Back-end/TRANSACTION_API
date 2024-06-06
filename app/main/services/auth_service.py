@@ -20,8 +20,18 @@ class AuthService:
     @classmethod
     def get_auth_token(cls, token: str) -> Any:
         res = requests.get(f"{cls.url}/utils/validate-token/{token}", json.dumps({
-        }), headers=cls.headers,)
+        }), headers=cls.headers, )
         response = res.json()
+        if res.status_code in [200]:
+            return response
+        return False
+
+    @classmethod
+    def get_buyer_uuid(cls, token: str, phone_number: str) -> Any:
+        res = requests.get(f"{cls.url}/utils/get_buyer_uuid/{token}/{phone_number}", json.dumps({
+        }), headers=cls.headers, )
+        response = res.json()
+        print(f".............................data:{response}")
         if res.status_code in [200]:
             return response
         return False
@@ -29,7 +39,7 @@ class AuthService:
     @classmethod
     def get_user(cls, token: str, user_uuid: str) -> Any:
         res = requests.get(f"{cls.url}/utils/get_user/{token}/{user_uuid}", json.dumps({
-        }), headers=cls.headers,)
+        }), headers=cls.headers, )
         response = res.json()
         if res.status_code in [200]:
             return response

@@ -24,14 +24,14 @@ def save_buyer_information(buyer: schemas.BuyerCreate, token: str, db: Session =
     except HTTPException as e:
         raise e
     except Exception as e:
-        raise HTTPException(status_code=500, detail="An error has occurred")
+        raise HTTPException(status_code=500, detail=f"{str(e)}")
 
 
 @router.post("/order/create/{token}")
 def creat_order(order: schemas.OrderCreate, token: str, buyer_uuid: str = None, db: Session = Depends(get_db)):
     try:
         db_article = create_order_products(db=db, obj_in=order, token=token, buyer_uuid=buyer_uuid)
-        return {"message": "Article created successfully", "order": db_article}
+        return {"message": "Order created successfully", "order": db_article}
     except HTTPException as e:
         raise e
     except Exception as e:
@@ -53,7 +53,7 @@ def get_orders(token: str,
         raise HTTPException(status_code=500, detail=f"{str(e)}")
 
 
-@router.get("/orders/get/{token}")
+@router.get("/orders/get/{token}", response_model=schemas.DataList[schemas.OrderDetail])
 def get_orders_with_pagination(
         token: str,
         order: str = Query("ASC", enum=["ASC", "DESC"]),
@@ -73,7 +73,6 @@ def get_orders_with_pagination(
             order_status=order_status,
             order_type=order_type
         )
-
         return orders
     except HTTPException as e:
         raise e

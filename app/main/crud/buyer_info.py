@@ -6,12 +6,12 @@ from typing import Any
 from app.main.services import auth
 
 
-def create_buyer(db: Session, obj_in: schemas.BuyerCreate, token: str,order:models.Order) -> Any:
+def create_buyer(db: Session, obj_in: schemas.BuyerCreate, token: str, order: models.Order,) -> Any:
 
-    valid_token = auth.get_auth_token(token=token)
-    if valid_token:
+    bayer_uuid = auth.get_buyer_uuid(token=token, phone_number=obj_in.phone)
+    if bayer_uuid:
         db_obj = models.BuyerInfo(
-            uuid=str(uuid.uuid4()),
+            uuid=bayer_uuid,
             name=obj_in.name,
             email=obj_in.email,
             phone=obj_in.phone,
