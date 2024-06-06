@@ -40,9 +40,10 @@ def create_article(db: Session, articles: list[schemas.ArticleCreate], token: st
                     article_uuid=db_article.uuid,
                     storage_uuid=storage_uuid
                 )
-                created_articles.append(db_article)
                 db.add(article_file)
+            created_articles.append(db_article)
             db.refresh(db_article)
+            print('=========created-article==========',created_articles)
         db.commit()
 
         return created_articles
