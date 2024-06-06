@@ -53,7 +53,7 @@ def get_order_products(
     valid_token = auth.get_auth_token(token=token)
     if valid_token is not None:
         order = db.query(models.Order).filter(models.Order.code == code).first()
-        user = auth.get_user(token=token,user_uuid= order.user_uuid)
+        user = auth.get_user(token=token,user_uuid=order.user_uuid)
 
         if not order:
             raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="this code is not valid")

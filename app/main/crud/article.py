@@ -35,13 +35,13 @@ def create_article(db: Session, articles: list[schemas.ArticleCreate], token: st
                 description=article.description)
             db.add(db_article)
             db.flush()
-            for  storage_uuid in article.storage_uuid:
+            for storage_uuid in article.storage_uuid:
                 article_file = models.ArticleFile(
                     article_uuid=db_article.uuid,
                     storage_uuid=storage_uuid
                 )
-                created_articles.append(db_article)
                 db.add(article_file)
+            created_articles.append(db_article)
             db.refresh(db_article)
         db.commit()
 
