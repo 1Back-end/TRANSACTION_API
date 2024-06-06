@@ -43,6 +43,7 @@ def create_article(db: Session, articles: list[schemas.ArticleCreate], token: st
                 db.add(article_file)
             created_articles.append(db_article)
             db.refresh(db_article)
+            print('=========created-article==========',created_articles)
         db.commit()
 
         return created_articles

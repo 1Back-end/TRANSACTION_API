@@ -1,9 +1,13 @@
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict
+
 from .user import UserCreate
 from .order_product import OrderProductBase, OrderProductCreate, OrderProduct
 from enum import Enum
 from .buyer_info import  Buyer
+from typing import Optional, List, Any
+
+from ..services import auth
 
 
 class OrderStatusType(str, Enum):
@@ -50,4 +54,52 @@ class DisplayOrder(BaseModel):
 
 class OrderDetail(DisplayOrder):
     buyer:Buyer
+
+
+class ImageResponse(BaseModel):
+        url: Optional[str]
+        model_config = ConfigDict(from_attributes=True)
+
+class ArticleResponse(BaseModel):
+        uuid: str
+        name: str
+        price: float
+        description: str
+        images: List[ImageResponse]
+        date_added: datetime
+        date_modified: datetime
+
+        model_config = ConfigDict(from_attributes=True)
+
+
+class OrderProductResponse(BaseModel):
+    uuid: str
+    date_added: datetime
+    date_modified: datetime
+    article: ArticleResponse
+    model_config = ConfigDict(from_attributes=True)
+
+
+class OrderResponse(BaseModel):
+        uuid: str
+        code: str
+        total_quantity: int
+        total_price: float
+        status: str
+        buyer_uuid: Optional[str]
+        buyer: Optional[Buyer] = None
+        user_uuid: str
+        user: Optional[UserCreate] = None
+        order_products: list[OrderProductResponse]
+        model_config = ConfigDict(from_attributes=True)
+
+
+class OrderResponseList(BaseModel):
+    total :int = 0
+    pages:int
+    current_page:int
+    per_page : int
+    orders:list[OrderResponse]
+
+
 

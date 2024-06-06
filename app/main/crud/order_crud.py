@@ -1,5 +1,6 @@
 import math
 
+from fastapi.encoders import jsonable_encoder
 from sqlalchemy.orm import Session
 from app.main import models, schemas
 from fastapi import HTTPException, status
@@ -7,7 +8,7 @@ import uuid
 from sqlalchemy import or_
 from app.main.core.security import decode_access_token, generate_code
 from app.main.services import auth
-
+from  app.main.models.order import  OrderStatusType
 
 def create_order_products(db: Session, obj_in: schemas.OrderCreate, token: str,    buyer_uuid:str):
     valid_token = auth.get_auth_token(token=token)
@@ -73,9 +74,9 @@ def get_order_with_pagination(
 ):
 
     valid_token = auth.get_auth_token(token=token)
+
     orders =[]
     if valid_token is not None:
-        orders = db.query(models.Order)
 
         orders = db.query(models.Order).\
             filter(
@@ -89,32 +90,96 @@ def get_order_with_pagination(
             order ="ASC"
 
         if order_type and order_type == 'SELLED':
-            orders =orders.filter(models.Order.user_uuid == decode_access_token(token)['sub'])
+            orders = orders.filter(models.Order.user_uuid == decode_access_token(token)['sub'])
 
         if order_type and order_type == 'BUYED':
-            orders =orders.filter(models.Order.buyer_uuid == decode_access_token(token)['sub'])
+            orders = orders.filter(models.Order.buyer_uuid == decode_access_token(token)['sub'])
 
-        if order_status and order_status == 'PAID':
-            orders =orders.filter(models.Order.status == "PAID")
+        if order_status and order_status == OrderStatusType.PAID:
+            orders =orders.filter(models.Order.status == OrderStatusType.PAID)
 
-        if  order_status and order_status == 'CANCELLED':
-            orders =orders.filter(models.Order.status == "CANCELLED")
+        if  order_status and order_status == OrderStatusType.CANCELLED:
+            orders =orders.filter(models.Order.status == OrderStatusType.CANCELLED)
 
-        if order_status and order_status == 'PENDING':
-            orders =orders.filter(models.Order.status == "PENDING")
+        if order_status and order_status == OrderStatusType.PENDING:
+            orders =orders.filter(models.Order.status == OrderStatusType.PENDING)
 
         orders= orders.order_by(getattr(models.Order,"date_added" ,str(order).lower()))
 
         total = orders.count()
-        orders =orders.offset((page - 1) * per_page).limit(per_page).all()
+        orders = orders.offset((page - 1) * per_page).limit(per_page).all()
+
+        data = jsonable_encoder(orders)
+        for order in data:
+            user = auth.get_user(token = token,user_uuid =order["user_uuid"])
+            order["user"] = schemas.UserCreate(
+                country_code =user["country_code"],
+                phone_number =user["phone_number"],
+                full_phone_number =user["full_phone_number"],
+                first_name = user["first_name"],
+                last_name = user["last_name"],
+                email = user["email"],
+                address = user["address"]
+            )
+
+        # return\
+        #     {
+        #     "total": total,
+        #     "pages": math.ceil(total / per_page),
+        #     "current_page": page,
+        #     "per_page": per_page,
+        #     "data": [
+        #             {
+        #                 "uuid": order.uuid,
+        #                 "code": order.code,
+        #                 "total_quantity": order.total_quantity,
+        #                 "total_price": order.total_price,
+        #                 "date_added": order.date_added,
+        #                 "status": order.status,
+        #                 "buyer_uuid": order.buyer_uuid,
+        #                 "buyer": order.buyer,
+        #                 "user_uuid": order.user_uuid,
+        #                 "user": auth.get_user(token = token,user_uuid =order.user_uuid),
+        #
+        #                 "order_products": [
+        #                     {
+        #                         "uuid": order_product.uuid,
+        #                         "price": order_product.price,
+        #                         "quantity": order_product.quantity,
+        #                         "article_uuid": order_product.article_uuid,
+        #                         "article":{
+        #                             "uuid": order_product.article.uuid,
+        #                             "name": order_product.article.name,
+        #                             "price": order_product.article.price,
+        #                             "description": order_product.article.description,
+        #                             "date_added": order_product.article.date_added,
+        #                             "images": [
+        #                                 {
+        #                                     "url":article.url
+        #                                 }
+        #
+        #                             for article in order_product.article.images
+        #                             ]
+        #                              },
+        #                         "order_uuid": order_product.order_uuid,
+        #                     }
+        #                     for order_product in order.order_products
+        #                 ]
+        #             }
+        #             for order in orders
+        #     ]
+        # }
 
         return schemas.DataList(
-             total = total,
-            pages=math.ceil(total / per_page),
-            current_page=page,
-            per_page=per_page,
-            data=orders
+            total = total,
+            pages = math.ceil(total/per_page),
+            current_page =  page,
+            per_page = per_page,
+            data = data
         )
+
+
+
 
 def get_order_with_uuid(
         db: Session,
@@ -130,3 +195,11 @@ def get_order_with_uuid(
             raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="order not found")
         return {"order": order, "user": user,"buyer":buyer}
 
+
+def mark_order_as_cancelled(
+        *,
+        db: Session,
+        order: models.Order = None,
+):
+    order.status = OrderStatusType.CANCELLED
+    db.commit()
