@@ -56,7 +56,7 @@ def get_orders(token: str,
 @router.get("/orders/get/{token}", response_model=schemas.DataList[schemas.OrderDetail])
 def get_orders_with_pagination(
         token: str,
-        order: str = Query("ASC", enum=["ASC", "DESC"]),
+        order: str = Query(None, enum=["ASC", "DESC"]),
         order_status: str = Query(None, enum=["PAID", "PENDING", "CANCELLED"]),
         order_type: str = Query(None, enum=["SELLED", "BUYED"]),
         page: int = 1,
