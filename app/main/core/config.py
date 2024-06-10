@@ -24,7 +24,7 @@ class ConfigClass(BaseSettings):
     ACCESS_TOKEN_EXPIRE_MINUTES: int = int(get_secret("ACCESS_TOKEN_EXPIRE_MINUTES", 60 * 24 * 365))
 
     SQLALCHEMY_DATABASE_URL: str = get_secret("SQLALCHEMY_DATABASE_URL",
-                                              'postgresql://postgres:postgres109@localhost:5432'
+                                              'postgresql://postgres:postgres19J2140@localhost:5432'
                                                '/transaction_epursa')
 
     SQLALCHEMY_POOL_SIZE: int = 100

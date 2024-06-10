@@ -42,7 +42,7 @@ target_metadata = Base.metadata
 
 def get_url():
     return get_secret("SQLALCHEMY_DATABASE_URL",
-                      'postgresql://postgres:postgres109@localhost:5432'
+                      'postgresql://postgres:postgres19J2140@localhost:5432'
                       '/transaction_epursa')
 
 
