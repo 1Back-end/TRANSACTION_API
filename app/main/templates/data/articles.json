@@ -1,0 +1,102 @@
+[
+  {
+    "uuid": "218adba6-aa85-49c5-b05b-056c2dded28b",
+    "name": "HONOR 50",
+    "price": 300000.0,
+    "description": "Honor vlog 50",
+    "date_added": "2024-06-03 17:16:10.189541",
+    "date_modified": "2024-06-03 17:16:10.189558"
+  },
+  {
+    "uuid": "b491b4bc-54a7-4fd7-b458-4dc097786955",
+    "name": "an article",
+    "price": 1250.0,
+    "description": "Je suis désolé d'apprendre cela. Il peut y avoir eu des problèmes techniques ou des interruptions de service. Je suis ici maintenant et prêt à vous aider. Que puis-je faire pour vous ?",
+    "date_added": "2024-06-04 15:42:36.853507",
+    "date_modified": "2024-06-04 15:42:36.853519"
+  },
+  {
+    "uuid": "1c16aa19-dc04-4c67-866c-e84a98b6985b",
+    "name": "un article",
+    "price": 258.0,
+    "description": "connais tu les query parameters avec riverpod sous flutter?",
+    "date_added": "2024-06-04 15:47:06.826565",
+    "date_modified": "2024-06-04 15:47:06.826574"
+  },
+  {
+    "uuid": "d1ca7629-0c3e-4516-90c9-107eed0bda6a",
+    "name": "chambre ˋa louer",
+    "price": 5789.0,
+    "description": "multitude de fonctionnalités qui facilitent notre vie personnelle et professionnelle. Cet article se propose de vous présenter les dernières innovations en matière de téléphones portables, leurs fonctionnalités révolutionnaires, et comment ils redéfinissent notre manière de vivre et de travailler.",
+    "date_added": "2024-06-05 09:11:06.229703",
+    "date_modified": "2024-06-05 09:11:06.229721"
+  },
+  {
+    "uuid": "4852a986-f432-4f7e-b6ba-80852abde591",
+    "name": "un article de test",
+    "price": 2590.0,
+    "description": "multitude de fonctionnalités qui facilitent notre vie personnelle et professionnelle. Cet article se propose de vous présenter les dernières innovations en matière de téléphones portables, leurs fonctionnalités révolutionnaires, et comment ils redéfinissent notre manière de vivre et de travailler.",
+    "date_added": "2024-06-05 09:11:06.278438",
+    "date_modified": "2024-06-05 09:11:06.278446"
+  },
+  {
+    "uuid": "060b1b5e-1f4e-4b29-ba7e-9d80498dcd52",
+    "name": "chambre ˋa louer",
+    "price": 254.0,
+    "description": "Le storytelling est une technique puissante qui transcende les simples faits et données pour toucher le cœur et l'esprit des gens. En intégrant de",
+    "date_added": "2024-06-05 09:15:51.549791",
+    "date_modified": "2024-06-05 09:15:51.549799"
+  },
+  {
+    "uuid": "6ebddfb5-c855-4b96-85a8-3db28f031750",
+    "name": "chambre ˋa louer",
+    "price": 2586.0,
+    "description": "Le storytelling est une technique puissante qui transcende les simples faits et données pour toucher le cœur et l'esprit des gens. En intégrant de",
+    "date_added": "2024-06-05 09:26:55.682741",
+    "date_modified": "2024-06-05 09:26:55.68275"
+  },
+  {
+    "uuid": "778d3899-a4a6-4d97-a238-7a650b23a806",
+    "name": "chambre ",
+    "price": 2501.0,
+    "description": "Le storytelling est une technique puissante qui transcende les simples faits et données pour toucher le cœur et l'esprit des gens. En intégrant de",
+    "date_added": "2024-06-05 09:36:02.768858",
+    "date_modified": "2024-06-05 09:36:02.768867"
+  },
+  {
+    "uuid": "d5a46c35-359a-42ae-bc3c-36f6df8eff63",
+    "name": "un test d'article",
+    "price": 4561.0,
+    "description": "Le storytelling est une technique puissante qui transcende les simples faits et données pour toucher le cœur et l'esprit des gens. En intégrant de",
+    "date_added": "2024-06-05 09:46:46.006605",
+    "date_modified": "2024-06-05 09:46:46.006617"
+  },
+  {
+    "uuid": "eb0eba92-ace8-41a0-859f-0beb57b44680",
+    "name": "a article test",
+    "price": 2589.0,
+    "description": "Le storytelling est une technique puissante qui transcende les simples faits et données pour toucher le cœur et l'esprit des gens. En intégrant de",
+    "date_added": "2024-06-05 09:52:53.539536",
+    "date_modified": "2024-06-05 09:52:53.539545"
+  },
+  {
+    "uuid": "fc8e09a3-c089-4087-9eac-346902470506",
+    "name": "je teste un article pour le test",
+    "price": 2596.0,
+    "description": "plus impactants, mémorables et efficaces. Que ce soit dans le cadre personnel ou professionnel, maîtriser l''art du storytelling peut considérablement enrichir la manière dont on communique et influence les autres.",
+    "date_added": "2024-06-05 09:56:00.399204",
+    "date_modified": "2024-06-05 09:56:00.399213"
+  },
+  {
+    "uuid": "e7ad1ba9-6d7e-4854-b1f9-5f09f2d784c4",
+    "name": "un second model de tasse",
+    "price": 2569852014.0,
+    "description": "'"Lorem ipsum'" est un texte de remplissage utilisé couramment dans le domaine de la typographie, du design graphique et du développement web. Il permet de créer un visuel des éléments textuels sans se concentrer sur le contenu réel. Le texte '"L",
+    "date_added": "2024-06-05 10:14:10.422951",
+    "date_modified": "2024-06-05 10:14:10.422959"
+  },
+  {
+    "uuid": "2b16b851-1e89-4bd2-bcc7-3fcbfdf64b77",
+    "name": "tasses ˋa vendre",
+    "price": 1650.0,
+    "description": "'"Lorem ipsum'" est un texte de remplissage utilisé couramment dans le domaine de la typographie, du design graphique et du développement web. Il permet de créer un visuel des éléments textuels sans
