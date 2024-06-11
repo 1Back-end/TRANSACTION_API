@@ -1,0 +1,382 @@
+[
+  {
+    "uuid": "2661985b-8ca5-4ec6-8ba3-c52bba27d2d1",
+    "price": "300000",
+    "quantity": "10",
+    "total_price": "0",
+    "article_uuid": "218adba6-aa85-49c5-b05b-056c2dded28b",
+    "order_uuid": "2eba5ccb-c7ba-444c-aa58-deae0c79053c",
+    "date_added": "2024-06-03 17:39:02.686555+01",
+    "date_modified": "2024-06-03 17:39:02.686569+01"
+  },
+  {
+    "uuid": "06b403eb-7187-4a7a-ac09-6be6ac6489a0",
+    "price": "300000",
+    "quantity": "10",
+    "total_price": "0",
+    "article_uuid": "218adba6-aa85-49c5-b05b-056c2dded28b",
+    "order_uuid": "c761a66b-5742-4a63-bf1c-278b92211677",
+    "date_added": "2024-06-03 17:48:24.534017+01",
+    "date_modified": "2024-06-03 17:48:24.534028+01"
+  },
+  {
+    "uuid": "c275299f-6a48-46ad-ba94-d3eacec5c8aa",
+    "price": "300000",
+    "quantity": "10",
+    "total_price": "0",
+    "article_uuid": "218adba6-aa85-49c5-b05b-056c2dded28b",
+    "order_uuid": "4a1f137a-60f7-4f42-81b3-425b30ad55d1",
+    "date_added": "2024-06-03 17:48:45.598275+01",
+    "date_modified": "2024-06-03 17:48:45.598287+01"
+  },
+  {
+    "uuid": "073013cd-df85-4a08-9c7c-2940a9c345bf",
+    "price": "300000",
+    "quantity": "30",
+    "total_price": "0",
+    "article_uuid": "218adba6-aa85-49c5-b05b-056c2dded28b",
+    "order_uuid": "9c8a97e0-7ee4-43eb-ad94-34c8344c8f9d",
+    "date_added": "2024-06-04 08:46:40.549803+01",
+    "date_modified": "2024-06-04 08:46:40.549815+01"
+  },
+  {
+    "uuid": "abce364a-ac47-4ee1-a521-e6dd333db993",
+    "price": "5789",
+    "quantity": "1",
+    "total_price": "0",
+    "article_uuid": "d1ca7629-0c3e-4516-90c9-107eed0bda6a",
+    "order_uuid": "27a7bc8a-ab42-48e9-8a05-070f3a70427c",
+    "date_added": "2024-06-05 09:13:17.565449+01",
+    "date_modified": "2024-06-05 09:13:17.565471+01"
+  },
+  {
+    "uuid": "a5bb8614-3642-435e-b9dc-27eff51bace6",
+    "price": "5789",
+    "quantity": "1",
+    "total_price": "0",
+    "article_uuid": "d1ca7629-0c3e-4516-90c9-107eed0bda6a",
+    "order_uuid": "27a7bc8a-ab42-48e9-8a05-070f3a70427c",
+    "date_added": "2024-06-05 09:13:17.58971+01",
+    "date_modified": "2024-06-05 09:13:17.589719+01"
+  },
+  {
+    "uuid": "31a9affd-ebc6-4d9b-8b05-b2e1d4b2c00b",
+    "price": "2590",
+    "quantity": "1",
+    "total_price": "0",
+    "article_uuid": "4852a986-f432-4f7e-b6ba-80852abde591",
+    "order_uuid": "27a7bc8a-ab42-48e9-8a05-070f3a70427c",
+    "date_added": "2024-06-05 09:13:17.591818+01",
+    "date_modified": "2024-06-05 09:13:17.591826+01"
+  },
+  {
+    "uuid": "7d3aeeb3-5628-4ee0-b7ca-6458b0b31dd5",
+    "price": "2590",
+    "quantity": "1",
+    "total_price": "0",
+    "article_uuid": "4852a986-f432-4f7e-b6ba-80852abde591",
+    "order_uuid": "27a7bc8a-ab42-48e9-8a05-070f3a70427c",
+    "date_added": "2024-06-05 09:13:17.593856+01",
+    "date_modified": "2024-06-05 09:13:17.593864+01"
+  },
+  {
+    "uuid": "6bb99183-215e-48e5-9370-9ccf87de3796",
+    "price": "2590",
+    "quantity": "1",
+    "total_price": "0",
+    "article_uuid": "4852a986-f432-4f7e-b6ba-80852abde591",
+    "order_uuid": "27a7bc8a-ab42-48e9-8a05-070f3a70427c",
+    "date_added": "2024-06-05 09:13:17.595998+01",
+    "date_modified": "2024-06-05 09:13:17.596006+01"
+  },
+  {
+    "uuid": "77209029-fb8a-4ecc-bd09-f512607865e1",
+    "price": "254",
+    "quantity": "1",
+    "total_price": "0",
+    "article_uuid": "060b1b5e-1f4e-4b29-ba7e-9d80498dcd52",
+    "order_uuid": "5d9a98c1-8435-45fe-8a95-c8e961701dec",
+    "date_added": "2024-06-05 09:15:58.352156+01",
+    "date_modified": "2024-06-05 09:15:58.352165+01"
+  },
+  {
+    "uuid": "bc652503-42e6-4a4d-8d7f-d6501b115f33",
+    "price": "254",
+    "quantity": "1",
+    "total_price": "0",
+    "article_uuid": "060b1b5e-1f4e-4b29-ba7e-9d80498dcd52",
+    "order_uuid": "5d9a98c1-8435-45fe-8a95-c8e961701dec",
+    "date_added": "2024-06-05 09:15:58.354501+01",
+    "date_modified": "2024-06-05 09:15:58.35451+01"
+  },
+  {
+    "uuid": "feec5dc2-641a-45bd-91c8-9966784324e1",
+    "price": "2586",
+    "quantity": "1",
+    "total_price": "0",
+    "article_uuid": "6ebddfb5-c855-4b96-85a8-3db28f031750",
+    "order_uuid": "c1eaaf79-1a32-476d-847b-55ea42c9c8db",
+    "date_added": "2024-06-05 09:27:09.673193+01",
+    "date_modified": "2024-06-05 09:27:09.673216+01"
+  },
+  {
+    "uuid": "6ccc8f1a-7ab7-438c-affc-5f0625f8fabd",
+    "price": "2586",
+    "quantity": "1",
+    "total_price": "0",
+    "article_uuid": "6ebddfb5-c855-4b96-85a8-3db28f031750",
+    "order_uuid": "c1eaaf79-1a32-476d-847b-55ea42c9c8db",
+    "date_added": "2024-06-05 09:27:09.675186+01",
+    "date_modified": "2024-06-05 09:27:09.675195+01"
+  },
+  {
+    "uuid": "a21adb11-f330-4b98-988d-7c8fce576ba2",
+    "price": "2501",
+    "quantity": "1",
+    "total_price": "0",
+    "article_uuid": "778d3899-a4a6-4d97-a238-7a650b23a806",
+    "order_uuid": "96b2630b-1460-4334-a535-52664ed9663b",
+    "date_added": "2024-06-05 09:36:53.117195+01",
+    "date_modified": "2024-06-05 09:36:53.117204+01"
+  },
+  {
+    "uuid": "ec7f6781-1151-42ce-80cb-3ae7e52f59a2",
+    "price": "300000",
+    "quantity": "50",
+    "total_price": "0",
+    "article_uuid": "218adba6-aa85-49c5-b05b-056c2dded28b",
+    "order_uuid": "ab7e6deb-c6ee-4253-a7a3-d4227fd1f784",
+    "date_added": "2024-06-05 09:42:11.589314+01",
+    "date_modified": "2024-06-05 09:42:11.589326+01"
+  },
+  {
+    "uuid": "81c17ae9-f7bb-41f8-b6d6-79c9c236f07e",
+    "price": "300000",
+    "quantity": "2",
+    "total_price": "0",
+    "article_uuid": "218adba6-aa85-49c5-b05b-056c2dded28b",
+    "order_uuid": "82a7741c-f580-4111-9b02-76077f300647",
+    "date_added": "2024-06-05 09:42:37.536672+01",
+    "date_modified": "2024-06-05 09:42:37.536682+01"
+  },
+  {
+    "uuid": "e272d7b9-7b77-4d34-a5a4-2b1f01e94f95",
+    "price": "2501",
+    "quantity": "1",
+    "total_price": "0",
+    "article_uuid": "778d3899-a4a6-4d97-a238-7a650b23a806",
+    "order_uuid": "898bc614-819f-4284-81c0-8646858350ff",
+    "date_added": "2024-06-05 09:45:38.752157+01",
+    "date_modified": "2024-06-05 09:45:38.752171+01"
+  },
+  {
+    "uuid": "3aca30d8-3c82-4584-ac6e-1331b522bdd3",
+    "price": "2501",
+    "quantity": "1",
+    "total_price": "0",
+    "article_uuid": "778d3899-a4a6-4d97-a238-7a650b23a806",
+    "order_uuid": "898bc614-819f-4284-81c0-8646858350ff",
+    "date_added": "2024-06-05 09:45:38.756342+01",
+    "date_modified": "2024-06-05 09:45:38.756357+01"
+  },
+  {
+    "uuid": "6ddc3750-6492-4ea5-8f83-3bc6a16a557e",
+    "price": "2501",
+    "quantity": "1",
+    "total_price": "0",
+    "article_uuid": "778d3899-a4a6-4d97-a238-7a650b23a806",
+    "order_uuid": "898bc614-819f-4284-81c0-8646858350ff",
+    "date_added": "2024-06-05 09:45:38.76032+01",
+    "date_modified": "2024-06-05 09:45:38.760331+01"
+  },
+  {
+    "uuid": "43da130c-777c-4e95-9987-fa33ec2192c1",
+    "price": "4561",
+    "quantity": "1",
+    "total_price": "0",
+    "article_uuid": "d5a46c35-359a-42ae-bc3c-36f6df8eff63",
+    "order_uuid": "4d2b14e9-7fec-4f6e-9822-c974fe5d9721",
+    "date_added": "2024-06-05 09:46:49.850565+01",
+    "date_modified": "2024-06-05 09:46:49.850574+01"
+  },
+  {
+    "uuid": "7efabc6e-8926-42be-9906-f17da3dac26c",
+    "price": "4561",
+    "quantity": "1",
+    "total_price": "0",
+    "article_uuid": "d5a46c35-359a-42ae-bc3c-36f6df8eff63",
+    "order_uuid": "4d2b14e9-7fec-4f6e-9822-c974fe5d9721",
+    "date_added": "2024-06-05 09:46:49.852616+01",
+    "date_modified": "2024-06-05 09:46:49.852624+01"
+  },
+  {
+    "uuid": "daab3586-da23-4efc-b837-b37a5107471c",
+    "price": "2589",
+    "quantity": "1",
+    "total_price": "0",
+    "article_uuid": "eb0eba92-ace8-41a0-859f-0beb57b44680",
+    "order_uuid": "b7b9eb7d-7bce-4b18-9d0f-e8def05bf69a",
+    "date_added": "2024-06-05 09:53:01.692398+01",
+    "date_modified": "2024-06-05 09:53:01.692407+01"
+  },
+  {
+    "uuid": "6043475c-82d3-4bf9-9e3b-193f06af237c",
+    "price": "2589",
+    "quantity": "1",
+    "total_price": "0",
+    "article_uuid": "eb0eba92-ace8-41a0-859f-0beb57b44680",
+    "order_uuid": "b7b9eb7d-7bce-4b18-9d0f-e8def05bf69a",
+    "date_added": "2024-06-05 09:53:01.694262+01",
+    "date_modified": "2024-06-05 09:53:01.69427+01"
+  },
+  {
+    "uuid": "8a1c3bdc-3662-425a-a0fc-86138f5050a9",
+    "price": "2589",
+    "quantity": "1",
+    "total_price": "0",
+    "article_uuid": "eb0eba92-ace8-41a0-859f-0beb57b44680",
+    "order_uuid": "b7b9eb7d-7bce-4b18-9d0f-e8def05bf69a",
+    "date_added": "2024-06-05 09:53:01.696361+01",
+    "date_modified": "2024-06-05 09:53:01.696372+01"
+  },
+  {
+    "uuid": "3289bb69-726e-4c76-b142-cf0c2db330ca",
+    "price": "2596",
+    "quantity": "1",
+    "total_price": "0",
+    "article_uuid": "fc8e09a3-c089-4087-9eac-346902470506",
+    "order_uuid": "89770514-4729-4866-9331-4f8c053bbc65",
+    "date_added": "2024-06-05 09:56:18.0227+01",
+    "date_modified": "2024-06-05 09:56:18.022709+01"
+  },
+  {
+    "uuid": "dd5dc9b1-4dc7-4f3f-8dfa-18657660b3dd",
+    "price": "2596",
+    "quantity": "1",
+    "total_price": "0",
+    "article_uuid": "fc8e09a3-c089-4087-9eac-346902470506",
+    "order_uuid": "89770514-4729-4866-9331-4f8c053bbc65",
+    "date_added": "2024-06-05 09:56:18.024679+01",
+    "date_modified": "2024-06-05 09:56:18.024687+01"
+  },
+  {
+    "uuid": "d9390f2b-9437-4e87-8fb1-252fdd0c1fd7",
+    "price": "2596",
+    "quantity": "1",
+    "total_price": "0",
+    "article_uuid": "fc8e09a3-c089-4087-9eac-346902470506",
+    "order_uuid": "89770514-4729-4866-9331-4f8c053bbc65",
+    "date_added": "2024-06-05 09:56:18.040486+01",
+    "date_modified": "2024-06-05 09:56:18.040495+01"
+  },
+  {
+    "uuid": "7379dd31-e4bf-4b0e-a682-c8ea764a46d2",
+    "price": "2569852014",
+    "quantity": "1",
+    "total_price": "0",
+    "article_uuid": "e7ad1ba9-6d7e-4854-b1f9-5f09f2d784c4",
+    "order_uuid": "bd5bb7a7-f2bf-4071-b006-8a6e070cf34a",
+    "date_added": "2024-06-05 10:14:15.041504+01",
+    "date_modified": "2024-06-05 10:14:15.041512+01"
+  },
+  {
+    "uuid": "7d713a1d-f0e2-47d3-aa80-e32f6f9d93b6",
+    "price": "2569852014",
+    "quantity": "1",
+    "total_price": "0",
+    "article_uuid": "e7ad1ba9-6d7e-4854-b1f9-5f09f2d784c4",
+    "order_uuid": "bd5bb7a7-f2bf-4071-b006-8a6e070cf34a",
+    "date_added": "2024-06-05 10:14:15.043419+01",
+    "date_modified": "2024-06-05 10:14:15.043427+01"
+  },
+  {
+    "uuid": "c446853c-5474-4ff4-baed-4ed5d543593b",
+    "price": "1650",
+    "quantity": "1",
+    "total_price": "0",
+    "article_uuid": "2b16b851-1e89-4bd2-bcc7-3fcbfdf64b77",
+    "order_uuid": "bd5bb7a7-f2bf-4071-b006-8a6e070cf34a",
+    "date_added": "2024-06-05 10:14:15.045308+01",
+    "date_modified": "2024-06-05 10:14:15.045316+01"
+  },
+  {
+    "uuid": "66cf620f-27d9-4b2a-975f-98a081224d85",
+    "price": "1650",
+    "quantity": "1",
+    "total_price": "0",
+    "article_uuid": "2b16b851-1e89-4bd2-bcc7-3fcbfdf64b77",
+    "order_uuid": "bd5bb7a7-f2bf-4071-b006-8a6e070cf34a",
+    "date_added": "2024-06-05 10:14:15.047121+01",
+    "date_modified": "2024-06-05 10:14:15.047129+01"
+  },
+  {
+    "uuid": "f54fd9f1-8f87-4562-8f7d-900291e3868e",
+    "price": "2598",
+    "quantity": "1",
+    "total_price": "0",
+    "article_uuid": "eb08165c-2e81-4c8f-b0b9-298bd4ad1f4a",
+    "order_uuid": "c7152565-70b0-428e-924e-ffb27928f46c",
+    "date_added": "2024-06-05 10:21:46.124917+01",
+    "date_modified": "2024-06-05 10:21:46.124925+01"
+  },
+  {
+    "uuid": "82e71645-8385-4b1f-ae36-a329238f9416",
+    "price": "2598",
+    "quantity": "1",
+    "total_price": "0",
+    "article_uuid": "eb08165c-2e81-4c8f-b0b9-298bd4ad1f4a",
+    "order_uuid": "c7152565-70b0-428e-924e-ffb27928f46c",
+    "date_added": "2024-06-05 10:21:46.126835+01",
+    "date_modified": "2024-06-05 10:21:46.126843+01"
+  },
+  {
+    "uuid": "c3116b54-8dce-4c7a-8595-ae995a8c72ad",
+    "price": "25000",
+    "quantity": "1",
+    "total_price": "0",
+    "article_uuid": "bec140bb-9e7a-4715-ad17-7582aaf2d002",
+    "order_uuid": "c7152565-70b0-428e-924e-ffb27928f46c",
+    "date_added": "2024-06-05 10:21:46.12862+01",
+    "date_modified": "2024-06-05 10:21:46.128629+01"
+  },
+  {
+    "uuid": "4d5a8bae-a121-4916-9c6b-e2a399c9036d",
+    "price": "25000",
+    "quantity": "1",
+    "total_price": "0",
+    "article_uuid": "bec140bb-9e7a-4715-ad17-7582aaf2d002",
+    "order_uuid": "c7152565-70b0-428e-924e-ffb27928f46c",
+    "date_added": "2024-06-05 10:21:46.130427+01",
+    "date_modified": "2024-06-05 10:21:46.130435+01"
+  },
+  {
+    "uuid": "f56bff5e-c259-436e-a1f9-ba00d2f3b952",
+    "price": "500000",
+    "quantity": "2",
+    "total_price": "0",
+    "article_uuid": "aab22327-2469-4820-b0d4-deb9e58a2c74",
+    "order_uuid": "0225a3fe-8c27-4d97-b15b-ef967ac4cc82",
+    "date_added": "2024-06-05 10:58:58.127158+01",
+    "date_modified": "2024-06-05 10:58:58.127172+01"
+  },
+  {
+    "uuid": "6a03bb26-aedc-45aa-b8fe-1fc792439d11",
+    "price": "500000",
+    "quantity": "2",
+    "total_price": "0",
+    "article_uuid": "aab22327-2469-4820-b0d4-deb9e58a2c74",
+    "order_uuid": "4137fc34-1ee7-4599-a789-c7852301ceba",
+    "date_added": "2024-06-05 12:01:25.842772+01",
+    "date_modified": "2024-06-05 12:01:25.842786+01"
+  },
+  {
+    "uuid": "241484e4-2bb4-43c1-92df-5dfd316add00",
+    "price": "2500",
+    "quantity": "1",
+    "total_price": "0",
+    "article_uuid": "130d65a6-53ed-49ad-8928-5004faa5dbae",
+    "order_uuid": "9dd907fa-c2c7-4288-8adc-86cade4eb824",
+    "date_added": "2024-06-06 17:48:08.981905+01",
+    "date_modified": "2024-06-06 17:48:08.981923+01"
+  }
+]

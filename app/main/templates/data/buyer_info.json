@@ -1,0 +1,37 @@
+[
+  {
+    "uuid": "24791d11-14d6-4c21-af3f-2b9a3b86a7d0",
+    "name": "Laurent",
+    "email": "test@test.com",
+    "phone": "+237698288916",
+    "address": "string"
+  },
+  {
+    "uuid": "fdc89058-8db2-4da8-a611-d9c01b98a23b",
+    "name": "john doe",
+    "email": "john@doe.com",
+    "phone": "+237699800568",
+    "address": "aucune adresse"
+  },
+  {
+    "uuid": "1eb3172b-4b24-477b-8831-716b7dbadcde",
+    "name": "un acheteur",
+    "email": "test@gmail.com",
+    "phone": "+237699885025",
+    "address": "son adresse"
+  },
+  {
+    "uuid": "e1a41b7f-8990-42db-b4d8-cb432d4f04ac",
+    "name": "Tanga Mvondo Severin Fernando",
+    "email": "mvondofernando7777@gmail.com",
+    "phone": "+237698288916",
+    "address": "string"
+  },
+  {
+    "uuid": "eac4ece6-5ece-4368-8270-d0863d13f80a",
+    "name": "string",
+    "email": "string",
+    "phone": "+237698288916",
+    "address": "test meec"
+  }
+]

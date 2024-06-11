@@ -1,0 +1,211 @@
+[
+  {
+    "uuid": "c761a66b-5742-4a63-bf1c-278b92211677",
+    "total_quantity": "10",
+    "total_price": "3000000",
+    "code": "PAO46",
+    "status": "PENDING",
+    "user_uuid": "5dcfd437-4bea-4bfe-89be-89b206ef632d",
+    "date_added": "2024-06-03 17:35:21.636475+01",
+    "date_modified": "2024-06-03 17:35:21.636564+01",
+    "buyer_uuid": "e1a41b7f-8990-42db-b4d8-cb432d4f04ac"
+  },
+  {
+    "uuid": "4a1f137a-60f7-4f42-81b3-425b30ad55d1",
+    "total_quantity": "10",
+    "total_price": "3000000",
+    "code": "CEP49",
+    "status": "PENDING",
+    "user_uuid": "5dcfd437-4bea-4bfe-89be-89b206ef632d",
+    "date_added": "2024-06-03 17:35:21.636475+01",
+    "date_modified": "2024-06-03 17:35:21.636564+01",
+    "buyer_uuid": "e1a41b7f-8990-42db-b4d8-cb432d4f04ac"
+  },
+  {
+    "uuid": "9c8a97e0-7ee4-43eb-ad94-34c8344c8f9d",
+    "total_quantity": "30",
+    "total_price": "9000000",
+    "code": "WOT12",
+    "status": "PENDING",
+    "user_uuid": "5dcfd437-4bea-4bfe-89be-89b206ef632d",
+    "date_added": "2024-06-04 08:42:21.67513+01",
+    "date_modified": "2024-06-04 08:42:21.675162+01",
+    "buyer_uuid": "e1a41b7f-8990-42db-b4d8-cb432d4f04ac"
+  },
+  {
+    "uuid": "2eba5ccb-c7ba-444c-aa58-deae0c79053c",
+    "total_quantity": "10",
+    "total_price": "3000000",
+    "code": "IZD53",
+    "status": "PENDING",
+    "user_uuid": "5dcfd437-4bea-4bfe-89be-89b206ef632d",
+    "date_added": "2024-06-03 17:35:21.636475+01",
+    "date_modified": "2024-06-04 17:22:15.141896+01",
+    "buyer_uuid": "24791d11-14d6-4c21-af3f-2b9a3b86a7d0"
+  },
+  {
+    "uuid": "27a7bc8a-ab42-48e9-8a05-070f3a70427c",
+    "total_quantity": "5",
+    "total_price": "19348",
+    "code": "GZA85",
+    "status": "PENDING",
+    "user_uuid": "5dcfd437-4bea-4bfe-89be-89b206ef632d",
+    "date_added": "2024-06-05 08:55:22.143565+01",
+    "date_modified": "2024-06-05 08:55:22.143595+01",
+    "buyer_uuid": null
+  },
+  {
+    "uuid": "5d9a98c1-8435-45fe-8a95-c8e961701dec",
+    "total_quantity": "2",
+    "total_price": "508",
+    "code": "50454",
+    "status": "PENDING",
+    "user_uuid": "5dcfd437-4bea-4bfe-89be-89b206ef632d",
+    "date_added": "2024-06-05 08:55:22.143565+01",
+    "date_modified": "2024-06-05 08:55:22.143595+01",
+    "buyer_uuid": null
+  },
+  {
+    "uuid": "96b2630b-1460-4334-a535-52664ed9663b",
+    "total_quantity": "1",
+    "total_price": "2501",
+    "code": "HHE93",
+    "status": "PENDING",
+    "user_uuid": "5dcfd437-4bea-4bfe-89be-89b206ef632d",
+    "date_added": "2024-06-05 08:55:22.143565+01",
+    "date_modified": "2024-06-05 08:55:22.143595+01",
+    "buyer_uuid": null
+  },
+  {
+    "uuid": "ab7e6deb-c6ee-4253-a7a3-d4227fd1f784",
+    "total_quantity": "50",
+    "total_price": "15000000",
+    "code": "97398",
+    "status": "PENDING",
+    "user_uuid": "5dcfd437-4bea-4bfe-89be-89b206ef632d",
+    "date_added": "2024-06-05 09:40:09.52681+01",
+    "date_modified": "2024-06-05 09:40:09.52684+01",
+    "buyer_uuid": null
+  },
+  {
+    "uuid": "82a7741c-f580-4111-9b02-76077f300647",
+    "total_quantity": "2",
+    "total_price": "600000",
+    "code": "GLE45",
+    "status": "PENDING",
+    "user_uuid": "5dcfd437-4bea-4bfe-89be-89b206ef632d",
+    "date_added": "2024-06-05 09:40:09.52681+01",
+    "date_modified": "2024-06-05 09:40:09.52684+01",
+    "buyer_uuid": null
+  },
+  {
+    "uuid": "898bc614-819f-4284-81c0-8646858350ff",
+    "total_quantity": "3",
+    "total_price": "7503",
+    "code": "30358",
+    "status": "PENDING",
+    "user_uuid": "5dcfd437-4bea-4bfe-89be-89b206ef632d",
+    "date_added": "2024-06-05 09:40:09.52681+01",
+    "date_modified": "2024-06-05 09:40:09.52684+01",
+    "buyer_uuid": null
+  },
+  {
+    "uuid": "4d2b14e9-7fec-4f6e-9822-c974fe5d9721",
+    "total_quantity": "2",
+    "total_price": "9122",
+    "code": "SJX35",
+    "status": "PENDING",
+    "user_uuid": "5dcfd437-4bea-4bfe-89be-89b206ef632d",
+    "date_added": "2024-06-05 09:40:09.52681+01",
+    "date_modified": "2024-06-05 09:40:09.52684+01",
+    "buyer_uuid": null
+  },
+  {
+    "uuid": "b7b9eb7d-7bce-4b18-9d0f-e8def05bf69a",
+    "total_quantity": "3",
+    "total_price": "7767",
+    "code": "MLE40",
+    "status": "PENDING",
+    "user_uuid": "5dcfd437-4bea-4bfe-89be-89b206ef632d",
+    "date_added": "2024-06-05 09:40:09.52681+01",
+    "date_modified": "2024-06-05 09:40:09.52684+01",
+    "buyer_uuid": null
+  },
+  {
+    "uuid": "89770514-4729-4866-9331-4f8c053bbc65",
+    "total_quantity": "3",
+    "total_price": "7788",
+    "code": "UAH97",
+    "status": "PENDING",
+    "user_uuid": "5dcfd437-4bea-4bfe-89be-89b206ef632d",
+    "date_added": "2024-06-05 09:40:09.52681+01",
+    "date_modified": "2024-06-05 09:40:09.526842+01",
+    "buyer_uuid": "fdc89058-8db2-4da8-a611-d9c01b98a23b"
+  },
+  {
+    "uuid": "bd5bb7a7-f2bf-4071-b006-8a6e070cf34a",
+    "total_quantity": "4",
+    "total_price": "5139707328",
+    "code": "WLB87",
+    "status": "PENDING",
+    "user_uuid": "5dcfd437-4bea-4bfe-89be-89b206ef632d",
+    "date_added": "2024-06-05 09:40:09.52681+01",
+    "date_modified": "2024-06-05 09:40:09.52684+01",
+    "buyer_uuid": null
+  },
+  {
+    "uuid": "c7152565-70b0-428e-924e-ffb27928f46c",
+    "total_quantity": "4",
+    "total_price": "55196",
+    "code": "ZVB10",
+    "status": "PENDING",
+    "user_uuid": "5dcfd437-4bea-4bfe-89be-89b206ef632d",
+    "date_added": "2024-06-05 09:40:09.52681+01",
+    "date_modified": "2024-06-05 09:40:09.526842+01",
+    "buyer_uuid": "1eb3172b-4b24-477b-8831-716b7dbadcde"
+  },
+  {
+    "uuid": "0225a3fe-8c27-4d97-b15b-ef967ac4cc82",
+    "total_quantity": "2",
+    "total_price": "1000000",
+    "code": "52680",
+    "status": "PENDING",
+    "user_uuid": "5dcfd437-4bea-4bfe-89be-89b206ef632d",
+    "date_added": "2024-06-05 10:56:37.520124+01",
+    "date_modified": "2024-06-05 10:56:37.520154+01",
+    "buyer_uuid": null
+  },
+  {
+    "uuid": "4137fc34-1ee7-4599-a789-c7852301ceba",
+    "total_quantity": "2",
+    "total_price": "1000000",
+    "code": "67000",
+    "status": "PENDING",
+    "user_uuid": "5dcfd437-4bea-4bfe-89be-89b206ef632d",
+    "date_added": "2024-06-05 12:01:05.048147+01",
+    "date_modified": "2024-06-05 12:01:05.048178+01",
+    "buyer_uuid": null
+  },
+  {
+    "uuid": "c1eaaf79-1a32-476d-847b-55ea42c9c8db",
+    "total_quantity": "2",
+    "total_price": "5172",
+    "code": "ZHN65",
+    "status": "PENDING",
+    "user_uuid": "5dcfd437-4bea-4bfe-89be-89b206ef632d",
+    "date_added": "2024-06-05 08:55:22.143565+01",
+    "date_modified": "2024-06-06 09:25:31.565118+01",
+    "buyer_uuid": "eac4ece6-5ece-4368-8270-d0863d13f80a"
+  },
+  {
+    "uuid": "9dd907fa-c2c7-4288-8adc-86cade4eb824",
+    "total_quantity": "1",
+    "total_price": "2500",
+    "code": "68208",
+    "status": "PENDING",
+    "user_uuid": "5dcfd437-4bea-4bfe-89be-89b206ef632d",
+    "date_added": "2024-06-06 16:31:10.523248+01",
+    "date_modified": "2024-06-06 16:31:10.523281+01",
+    "buyer_uuid": null
+  }
+]
