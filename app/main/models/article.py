@@ -52,9 +52,5 @@ class ArticleFile(Base):
     __tablename__ = 'articles_files'
 
     article_uuid = Column(String, ForeignKey('articles.uuid', ondelete="CASCADE"), nullable=False, primary_key=True)
-    storage_uuid = Column(String, ForeignKey('storages.uuid', ondelete="CASCADE"), nullable=False, primary_key=True)
-    file = relationship("Storage", backref="articles_files")
+    storage_uuid = Column(String, nullable=False)
 
-    @hybrid_property
-    def url(self):
-        return self.file.url if self.file else None

@@ -26,7 +26,7 @@ class Order(Base):
 
     user_uuid: str = Column(String,nullable=True)
     buyer_uuid: str = Column(String, ForeignKey('buyer_info.uuid', ondelete="CASCADE"), nullable=True)
-    buyer : str =  relationship("BuyerInfo", foreign_keys=[buyer_uuid],   uselist= False, backref="orders")
+    buyer: str = relationship("BuyerInfo", foreign_keys=[buyer_uuid],   uselist= False, backref="orders")
 
     date_added: any = Column(DateTime(timezone=True), default=datetime.now())
     date_modified: any = Column(DateTime(timezone=True), default=datetime.now(), onupdate=datetime.now())

@@ -54,15 +54,19 @@ def get_order_products(
 ):
     valid_token = auth.get_auth_token(token=token)
     if valid_token is not None:
-        order = db.query(models.Order).filter(models.Order.code == code).first()
+        order: models.Order = db.query(models.Order).filter(models.Order.code == code).first()
+        storage_uuids = [image.storage_uuid for order_product in order.order_products for image in order_product.article.images]
+        print(f"storage_uuids[0]:{storage_uuids[0]}")
+
         user = auth.get_user(token=token, user_uuid=order.user_uuid)
 
-        if not order:
-            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="this code is not valid")
-
-        return {"order": order, "user": user}
-
-    raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="token is not valid")
+    #
+    #     if not order:
+    #         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="this code is not valid")
+    #
+    #     return {"order": order, "user": user}
+    #
+    # raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="token is not valid")
 
 
 def get_order_with_pagination(

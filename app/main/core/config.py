@@ -16,7 +16,7 @@ class ConfigClass(BaseSettings):
     ALGORITHM: str = get_secret("ALGORITHM", 'HS256')
 
     ADMIN_KEY: str = get_secret("ADMIN_KEY", "EpursaKey2024!*")
-    API_KEY: str = get_secret("API_KEY", "D3EX3vpM3ntm3l9MOdJ")
+    API_KEY: str = get_secret("API_KEY", "AMC25Gva6pTEouh60ZDfKCZxCHfHJn-x-WoYPpoGRWQ")
     ADMIN_USERNAME: str = get_secret("ADMIN_USERNAME", "epursa")
     ADMIN_PASSWORD: str = get_secret("ADMIN_PASSWORD", "hlz5L1yB45g")
 
@@ -50,6 +50,7 @@ class ConfigClass(BaseSettings):
     API_STR: str = get_secret("API_STR", "/api/v1/transaction")
     # AUTH_API_URL: str = get_secret("AUTH_API_URL", "http://45.130.104.46:5003/api/v1/authentication")
     AUTH_API_URL: str = get_secret("AUTH_API_URL", "http://localhost:5305/api/v1/authentication")
+    STORAGE_API_URL: str = get_secret("STORAGE_API_URL", "http://localhost:5307/api/v1/storage")
     PROJECT_NAME: str = get_secret("PROJECT_NAME", "EPURSA TRANSACTION API")
     PROJECT_VERSION: str = get_secret("PROJECT_VERSION", "1.0.0")
 

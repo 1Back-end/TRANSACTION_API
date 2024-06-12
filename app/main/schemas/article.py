@@ -18,7 +18,7 @@ class ArticleUpdate(BaseModel):
     name: Optional[str] = None
     price: Optional[float] = None
     description: Optional[str] = None
-    storage_uuid: Optional[List[str] ] = None
+    storage_uuid: Optional[List[str]] = None
 
 
 class Storage(BaseModel):

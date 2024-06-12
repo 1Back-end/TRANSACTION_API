@@ -26,8 +26,8 @@ class OrderProduct(Base):
     date_added: any = Column(DateTime(timezone=True), default=datetime.now())
     date_modified: any = Column(DateTime(timezone=True), default=datetime.now(), onupdate=datetime.now)
 
-    def __repr__(self):
-        return '<OrderProducts: uuid: {}>'.format(self.uuid)
+    # def __repr__(self):
+    #     return '<OrderProducts: uuid: {}>'.format(self.uuid)
 
 
 @event.listens_for(OrderProduct, 'before_insert')

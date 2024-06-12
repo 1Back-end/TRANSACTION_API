@@ -9,7 +9,7 @@ router = APIRouter(prefix="/article", tags=["article"])
 
 
 @router.post("/{token}")
-def articles(articles: list[schemas.ArticleCreate], token: str, db: Session = Depends(get_db)):
+def creat_articles(articles: list[schemas.ArticleCreate], token: str, db: Session = Depends(get_db)):
     try:
         db_article = create_article(db=db, articles=articles, token=token)
         return {"message": "Article created successfully", "article": db_article}

@@ -8,10 +8,12 @@ from app.main.services import auth
 
 def create_buyer(db: Session, obj_in: schemas.BuyerCreate, token: str, order: models.Order,) -> Any:
 
-    bayer_uuid = auth.get_buyer_uuid(token=token, phone_number=obj_in.phone)
-    if bayer_uuid:
+    buyer_obj = auth.get_buyer_uuid(token=token, phone_number=obj_in.phone)
+    if buyer_obj:
+        if db.query(models.BuyerInfo).filter(models.BuyerInfo.uuid == buyer_obj.get("uuid")).first():
+            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,detail="This buyer is already registered")
         db_obj = models.BuyerInfo(
-            uuid=bayer_uuid,
+            uuid=buyer_obj.get("full_phone_number"),
             name=obj_in.name,
             email=obj_in.email,
             phone=obj_in.phone,

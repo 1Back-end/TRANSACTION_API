@@ -2,7 +2,7 @@ from sqlalchemy.orm import Session
 from app.main import models, schemas
 from fastapi import HTTPException, status
 import uuid
-from app.main.services import auth
+from app.main.services import auth, storage
 
 
 def get_article(db: Session, uuid: str):
@@ -23,7 +23,7 @@ def create_article(db: Session, articles: list[schemas.ArticleCreate], token: st
                 *article.storage_uuid,
             ]
         print(f"......................... the uuids: {article_storage_uuids}")
-        db_storage = db.query(models.Storage).filter(models.Storage.uuid.in_(article_storage_uuids)).all()
+        db_storage = storage.get_storage_uuid(article_storage_uuids=article_storage_uuids)
         if len(db_storage) != len(article_storage_uuids):
             raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="File not found")
         created_articles = []
