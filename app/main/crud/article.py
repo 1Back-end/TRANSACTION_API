@@ -16,16 +16,10 @@ def get_all_article(db: Session, skip: int = 0, limit: int = 100):
 def create_article(db: Session, articles: list[schemas.ArticleCreate], token: str) -> list[schemas.Article]:
     valid_token = auth.get_auth_token(token=token)
     if valid_token:
-        article_storage_uuids = []
         for article in articles:
-            article_storage_uuids = [
-                *article_storage_uuids,
-                *article.storage_uuid,
-            ]
-        print(f"......................... the uuids: {article_storage_uuids}")
-        db_storage = storage.get_storage_uuid(article_storage_uuids=article_storage_uuids)
-        if len(db_storage) != len(article_storage_uuids):
-            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="File not found")
+            db_storage = storage.get_storage_uuid(article_storage_uuids=article.storage_uuid)
+            if len(db_storage) != len(article.storage_uuid):
+                raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="File not found")
         created_articles = []
         for article in articles:
             db_article = models.Article(

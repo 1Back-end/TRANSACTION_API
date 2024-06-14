@@ -28,5 +28,18 @@ class StorageService:
             return response
         return False
 
+    @classmethod
+    def get_storages(cls, storage_uuids: List[str]):
+        res = requests.post(f"{cls.url}/utils/get_storages", json.dumps({
+            'storage_uuids': storage_uuids,
+            'api_key': Config.API_KEY,
+        }), headers=cls.headers)
+        response = res.json()
+        print(f"...............image:{response}")
+        if res.status_code in [200]:
+            print("====response====", response)
+            return response
+        return False
+
 
 storage = StorageService()

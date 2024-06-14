@@ -34,7 +34,7 @@ class Article(ArticleBase):
     name: str
     price: float
     description: str | None = None
-    images: List[Image]
+    storages: Optional[List[Storage]] = []
     date_added: datetime
     date_modified: datetime
 

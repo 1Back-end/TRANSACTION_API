@@ -25,7 +25,7 @@ class ConfigClass(BaseSettings):
 
     SQLALCHEMY_DATABASE_URL: str = get_secret("SQLALCHEMY_DATABASE_URL",
                                               'postgresql://postgres:postgres19J2140@localhost:5432'
-                                               '/transaction_epursa')
+                                              '/transaction_epursa')
 
     SQLALCHEMY_POOL_SIZE: int = 100
     SQLALCHEMY_MAX_OVERFLOW: int = 0
@@ -39,18 +39,19 @@ class ConfigClass(BaseSettings):
     MINIO_API_URL: Optional[str] = get_secret("MINIO_API_URL", "http://45.130.104.46:5005/api/v1/transaction/storages"
                                                                "/file/get/")
     MINIO_URL: Optional[str] = get_secret("MINIO_URL", "45.130.104.46:9009")
-    MINIO_ACCESS_KEY: Optional[str] = get_secret("MINIO_ACCESS_KEY", "WlsCK$gS7CTqhmM@x0jshEzsCK$gTqSM@7CTdc3hTdc3mxlfyBo=")
-    MINIO_SECRET_KEY: Optional[str] = get_secret("MINIO_SECRET_KEY","jDe6SMqmmfCFyfGXD0n0N7r9AE2oKXyf/4pOht+GXDpLRRCF0n0N7r9AEqZfHoskTn1jjogcANAkflmfDa0kpxfiw==")
+    MINIO_ACCESS_KEY: Optional[str] = get_secret("MINIO_ACCESS_KEY",
+                                                 "WlsCK$gS7CTqhmM@x0jshEzsCK$gTqSM@7CTdc3hTdc3mxlfyBo=")
+    MINIO_SECRET_KEY: Optional[str] = get_secret("MINIO_SECRET_KEY",
+                                                 "jDe6SMqmmfCFyfGXD0n0N7r9AE2oKXyf/4pOht+GXDpLRRCF0n0N7r9AEqZfHoskTn1jjogcANAkflmfDa0kpxfiw==")
     MINIO_BUCKET: str = get_secret("MINIO_BUCKET", "develop")
     MINIO_SECURE: bool = False
-
 
     PREFERRED_LANGUAGE: str = get_secret("PREFERRED_LANGUAGE", 'fr')
 
     API_STR: str = get_secret("API_STR", "/api/v1/transaction")
     # AUTH_API_URL: str = get_secret("AUTH_API_URL", "http://45.130.104.46:5003/api/v1/authentication")
-    AUTH_API_URL: str = get_secret("AUTH_API_URL", "http://localhost:5305/api/v1/authentication")
-    STORAGE_API_URL: str = get_secret("STORAGE_API_URL", "http://localhost:5307/api/v1/storage")
+    AUTH_API_URL: str = get_secret("AUTH_API_URL", "http://45.130.104.46:5003/api/v1/authentication")
+    STORAGE_API_URL: str = get_secret("STORAGE_API_URL", "http://45.130.104.46:5008/api/v1/storage")
     PROJECT_NAME: str = get_secret("PROJECT_NAME", "EPURSA TRANSACTION API")
     PROJECT_VERSION: str = get_secret("PROJECT_VERSION", "1.0.0")
 

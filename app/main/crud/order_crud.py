@@ -7,7 +7,7 @@ from fastapi import HTTPException, status
 import uuid
 from sqlalchemy import or_
 from app.main.core.security import decode_access_token, generate_code
-from app.main.services import auth
+from app.main.services import auth, storage
 from app.main.models.order import OrderStatusType
 
 
@@ -54,19 +54,28 @@ def get_order_products(
 ):
     valid_token = auth.get_auth_token(token=token)
     if valid_token is not None:
-        order: models.Order = db.query(models.Order).filter(models.Order.code == code).first()
-        storage_uuids = [image.storage_uuid for order_product in order.order_products for image in order_product.article.images]
+        order: models.Order = db.query(models.Order, ).filter(models.Order.code == code).first()
+        storage_uuids = [image.storage_uuid for order_product in order.order_products for image in
+                         order_product.article.images]
         print(f"storage_uuids[0]:{storage_uuids[0]}")
 
         user = auth.get_user(token=token, user_uuid=order.user_uuid)
+        storages = storage.get_storages(storage_uuids=storage_uuids)
+        # print(f"....................order:{order.order_products}")
+        for order_product in order.order_products:
+            article_storages = []
+            for article_file in order_product.article.images:
+                for image in storages:
+                    if image["uuid"] == article_file.storage_uuid:
+                        article_storages.append(image)
+            order_product.article.storages = article_storages
 
-    #
-    #     if not order:
-    #         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="this code is not valid")
-    #
-    #     return {"order": order, "user": user}
-    #
-    # raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="token is not valid")
+        if not order:
+            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="this code is not valid")
+
+        return {"order": order, "user": user}
+
+    raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="token is not valid")
 
 
 def get_order_with_pagination(
@@ -112,11 +121,21 @@ def get_order_with_pagination(
         if order and order.lower() == "desc":
             orders = orders.order_by(getattr(models.Order, "date_added").desc())
 
-
         total = orders.count()
         orders = orders.offset((page - 1) * per_page).limit(per_page).all()
         for order in orders:
-
+            storage_uuids = [image.storage_uuid for order_product in order.order_products for image in
+                             order_product.article.images]
+            print(f"storage_uuids[0]:{storage_uuids[0]}")
+            storages = storage.get_storages(storage_uuids=storage_uuids)
+            # print(f"....................order:{order.order_products}")
+            for order_product in order.order_products:
+                article_storages = []
+                for article_file in order_product.article.images:
+                    for image in storages:
+                        if image["uuid"] == article_file.storage_uuid:
+                            article_storages.append(image)
+                order_product.article.storages = article_storages
             obj.append({
                 "order": order,
                 "user": user,

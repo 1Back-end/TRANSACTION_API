@@ -54,3 +54,4 @@ class ArticleFile(Base):
     article_uuid = Column(String, ForeignKey('articles.uuid', ondelete="CASCADE"), nullable=False, primary_key=True)
     storage_uuid = Column(String, nullable=False)
 
+

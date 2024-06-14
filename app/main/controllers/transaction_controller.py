@@ -38,7 +38,7 @@ def creat_order(order: schemas.OrderCreate, token: str, buyer_uuid: str = None, 
         raise HTTPException(status_code=500, detail="An error has occurred")
 
 
-@router.get("/order/get/{token}")
+@router.get("/order/get/{token}", response_model=schemas.DisplayOrder)
 def get_orders(token: str,
                code: str,
                db: Session = Depends(get_db),

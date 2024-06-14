@@ -31,7 +31,6 @@ class AuthService:
         res = requests.get(f"{cls.url}/utils/get_buyer_uuid/{token}/{phone_number}", json.dumps({
         }), headers=cls.headers, )
         response = res.json()
-        print(f".............................data:{response}")
         if res.status_code in [200]:
             return response
         return False
