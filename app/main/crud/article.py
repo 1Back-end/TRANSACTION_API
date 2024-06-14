@@ -18,6 +18,8 @@ def create_article(db: Session, articles: list[schemas.ArticleCreate], token: st
     if valid_token:
         for article in articles:
             db_storage = storage.get_storage_uuid(article_storage_uuids=article.storage_uuid)
+            if not db_storage:
+                raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="File not found")
             if len(db_storage) != len(article.storage_uuid):
                 raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="File not found")
         created_articles = []
