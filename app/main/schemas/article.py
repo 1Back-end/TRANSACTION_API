@@ -22,6 +22,7 @@ class ArticleUpdate(BaseModel):
 
 
 class Storage(BaseModel):
+    uuid: str
     url: str
 
 

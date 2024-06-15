@@ -15,11 +15,8 @@ router = APIRouter(prefix="", tags=["transaction"])
 
 @router.post("/infos_buyer/{token}")
 def save_buyer_information(buyer: schemas.BuyerCreate, token: str, db: Session = Depends(get_db)):
-    order: models.Order = db.query(models.Order).filter(models.Order.uuid == buyer.order_uuid).first()
-    if not order:
-        raise HTTPException(status_code=404, detail="order not found")
     try:
-        db_article = create_buyer(db=db, obj_in=buyer, token=token, order=order)
+        db_article = create_buyer(db=db, obj_in=buyer, token=token,)
         return db_article
     except HTTPException as e:
         raise e

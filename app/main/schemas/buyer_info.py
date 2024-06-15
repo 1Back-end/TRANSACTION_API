@@ -9,7 +9,7 @@ class BuyerBase(BaseModel):
 
 
 class BuyerCreate(BuyerBase):
-    order_uuid: str
+    pass
 
 
 class Buyer(BuyerBase):

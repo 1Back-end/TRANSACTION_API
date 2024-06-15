@@ -35,14 +35,5 @@ class AuthService:
             return response
         return False
 
-    @classmethod
-    def get_user(cls, token: str, user_uuid: str) -> Any:
-        res = requests.get(f"{cls.url}/utils/get_user/{token}/{user_uuid}", json.dumps({
-        }), headers=cls.headers, )
-        response = res.json()
-        if res.status_code in [200]:
-            return response
-        return False
-
 
 auth = AuthService()
