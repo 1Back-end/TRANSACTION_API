@@ -6,7 +6,7 @@ from app.main.core.config import Config
 
 engine = create_engine(
     Config.SQLALCHEMY_DATABASE_URL,
-    echo=True,  # To generate logs
+    echo=False,  # To generate logs
     pool_size=Config.SQLALCHEMY_POOL_SIZE,
     max_overflow=Config.SQLALCHEMY_MAX_OVERFLOW,
     pool_recycle=Config.SQLALCHEMY_POOL_RECYCLE,
