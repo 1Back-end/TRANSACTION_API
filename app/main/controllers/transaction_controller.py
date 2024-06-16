@@ -60,21 +60,21 @@ def get_orders_with_pagination(
         per_page: int = 30,
         db: Session = Depends(get_db),
 ):
-    try:
-        orders = get_order_with_pagination(
-            db=db,
-            token=token,
-            page=page,
-            per_page=per_page,
-            order=order,
-            order_status=order_status,
-            order_type=order_type
-        )
-        return orders
-    except HTTPException as e:
-        raise e
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=f"{str(e)}")
+    # try:
+    orders = get_order_with_pagination(
+        db=db,
+        token=token,
+        page=page,
+        per_page=per_page,
+        order=order,
+        order_status=order_status,
+        order_type=order_type
+    )
+    return orders
+    # except HTTPException as e:
+    #     raise e
+    # except Exception as e:
+    #     raise HTTPException(status_code=500, detail=f"{str(e)}")
 
 
 @router.get("/orders/get/{token}/{order_uuid}", response_model=schemas.OrderDetail)

@@ -90,74 +90,76 @@ def get_order_with_pagination(
 ):
     valid_token = auth.get_auth_token(token=token)
     obj = []
-    if valid_token is not None:
+    if not valid_token:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="user not found")
 
-
-        orders = db.query(models.Order). \
-            filter(
-            or_(
-                models.Order.user_uuid == decode_access_token(token)['sub'],
-                models.Order.buyer_uuid == decode_access_token(token)['sub'],
-            )
+    orders = db.query(models.Order). \
+        filter(
+        or_(
+            models.Order.user_uuid == decode_access_token(token)['sub'],
+            models.Order.buyer_uuid == decode_access_token(token)['sub'],
         )
-        print(orders)
-        if order_type and order_type == 'SELLED':
-            orders = orders.filter(models.Order.user_uuid == decode_access_token(token)['sub'])
+    )
+    print(orders)
+    if order_type and order_type == 'SELLED':
+        orders = orders.filter(models.Order.user_uuid == decode_access_token(token)['sub'])
 
-        if order_type and order_type == 'BUYED':
-            orders = orders.filter(models.Order.buyer_uuid == decode_access_token(token)['sub'])
+    if order_type and order_type == 'BUYED':
+        orders = orders.filter(models.Order.buyer_uuid == decode_access_token(token)['sub'])
 
-        if order_status and order_status == OrderStatusType.PAID:
-            orders = orders.filter(models.Order.status == OrderStatusType.PAID)
+    if order_status and order_status == OrderStatusType.PAID:
+        orders = orders.filter(models.Order.status == OrderStatusType.PAID)
 
-        if order_status and order_status == OrderStatusType.CANCELLED:
-            orders = orders.filter(models.Order.status == OrderStatusType.CANCELLED)
+    if order_status and order_status == OrderStatusType.CANCELLED:
+        orders = orders.filter(models.Order.status == OrderStatusType.CANCELLED)
 
-        if order_status and order_status == OrderStatusType.PENDING:
-            orders = orders.filter(models.Order.status == OrderStatusType.PENDING)
+    if order_status and order_status == OrderStatusType.PENDING:
+        orders = orders.filter(models.Order.status == OrderStatusType.PENDING)
 
-        if order and order.lower() == "asc":
-            orders = orders.order_by(getattr(models.Order, "date_added").asc())
+    if order and order.lower() == "asc":
+        orders = orders.order_by(getattr(models.Order, "date_added").asc())
 
-        if order and order.lower() == "desc":
-            orders = orders.order_by(getattr(models.Order, "date_added").desc())
+    if order and order.lower() == "desc":
+        orders = orders.order_by(getattr(models.Order, "date_added").desc())
 
-        total = orders.count()
-        orders = orders.offset((page - 1) * per_page).limit(per_page).all()
-        for order in orders:
-            userId = decode_access_token(token)['sub']
-            print(f".............command uuid:{order.uuid}")
-            print(f".............buyer uuid frere{order.buyer_uuid}")
-            second_user_id: str = order.user_uuid if order.buyer_uuid == userId else order.buyer_uuid
-            print("........first: {}, second: {}".format(userId, second_user_id))
-            users = auth.get_users(token=token, uuid=second_user_id)
-            storage_uuids = [image.storage_uuid for order_product in order.order_products for image in
-                             order_product.article.images]
-            print(f"storage_uuids[0]:{storage_uuids[0]}")
-            storages = storage.get_storages(storage_uuids=storage_uuids)
-            # print(f"....................order:{order.order_products}")
-            for order_product in order.order_products:
-                article_storages = []
-                for article_file in order_product.article.images:
-                    for image in storages:
-                        if image["uuid"] == article_file.storage_uuid:
-                            article_storages.append(image)
-                order_product.article.storages = article_storages
+    total = orders.count()
+    orders = orders.offset((page - 1) * per_page).limit(per_page).all()
+    for order in orders:
+        userId = decode_access_token(token)['sub']
+        print(f".............command uuid:{order.uuid}")
+        print(f".............buyer uuid frere{order.buyer_uuid}")
+        second_user_id: str = order.user_uuid if order.buyer_uuid == userId else order.buyer_uuid
+        print("........first: {}, second: {}".format(userId, second_user_id))
+        users = auth.get_users(token=token, uuid=second_user_id)
+        if not users :
+            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="user not found")
+        storage_uuids = [image.storage_uuid for order_product in order.order_products for image in
+                         order_product.article.images]
+        print(f"storage_uuids[0]:{storage_uuids[0]}")
+        storages = storage.get_storages(storage_uuids=storage_uuids)
+        # print(f"....................order:{order.order_products}")
+        for order_product in order.order_products:
+            article_storages = []
+            for article_file in order_product.article.images:
+                for image in storages:
+                    if image["uuid"] == article_file.storage_uuid:
+                        article_storages.append(image)
+            order_product.article.storages = article_storages
 
-            obj.append({
-                "order": order,
-                "user": users[0 if userId == order.user_uuid else 1],
-                "buyer": users[1 if userId == order.user_uuid else 0],
-            })
-        print(f"....................the value of data in datalist:{obj}")
+        obj.append({
+            "order": order,
+            "user": users[0 if userId == order.user_uuid else 1],
+            "buyer": users[1 if userId == order.user_uuid else 0],
+        })
+    print(f"....................the value of data in datalist:{obj}")
 
-        return schemas.DataList(
-            total=total,
-            pages=math.ceil(total / per_page),
-            current_page=page,
-            per_page=per_page,
-            data=obj
-        )
+    return schemas.DataList(
+        total=total,
+        pages=math.ceil(total / per_page),
+        current_page=page,
+        per_page=per_page,
+        data=obj
+    )
 
 
 def get_order_with_uuid(
