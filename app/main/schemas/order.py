@@ -2,10 +2,9 @@ from datetime import datetime
 from pydantic import BaseModel, ConfigDict
 
 from .storage import Storage
-from .user import UserCreate
+from .user import UserCreate, Buyer
 from .order_product import OrderProductBase, OrderProductCreate, OrderProduct
 from enum import Enum
-from .buyer_info import Buyer
 from typing import Optional, List, Any
 
 from ..services import auth

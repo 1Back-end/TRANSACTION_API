@@ -10,3 +10,12 @@ class UserCreate(BaseModel):
     email: str
     address: str
 
+
+class Buyer(BaseModel):
+    country_code: str
+    phone_number: str
+    full_phone_number: str
+    first_name: str
+    last_name: str
+    email: str
+    address: str

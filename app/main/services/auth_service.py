@@ -27,8 +27,17 @@ class AuthService:
         return False
 
     @classmethod
-    def get_buyer_uuid(cls, token: str, phone_number: str) -> Any:
-        res = requests.get(f"{cls.url}/utils/get_buyer_uuid/{token}/{phone_number}", json.dumps({
+    def get_user(cls, token: str, user_uuid: str) -> Any:
+        res = requests.get(f"{cls.url}/utils/get_user/{token}/{user_uuid}", json.dumps({
+        }), headers=cls.headers, )
+        response = res.json()
+        if res.status_code in [200]:
+            return response
+        return False
+
+    @classmethod
+    def get_users(cls, token: str, uuid: str) -> Any:
+        res = requests.get(f"{cls.url}/utils/get_users/{token}/{uuid}", json.dumps({
         }), headers=cls.headers, )
         response = res.json()
         if res.status_code in [200]:

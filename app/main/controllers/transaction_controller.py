@@ -3,7 +3,7 @@ from fastapi import Depends, HTTPException, Query, status
 from sqlalchemy.orm import Session
 from app.main import models, schemas
 from app.main.core.dependencies import get_db
-from app.main.crud.buyer_info import create_buyer
+from app.main.crud.buyer_info import create_buyer, link_bayer_to_order_crud
 from app.main.crud.order_crud import create_order_products, get_order_products, get_order_with_pagination, \
     get_order_with_uuid, mark_order_as_cancelled
 from app.main.core.security import decode_access_token
@@ -25,9 +25,9 @@ def save_buyer_information(buyer: schemas.BuyerCreate, token: str, db: Session =
 
 
 @router.post("/order/create/{token}")
-def creat_order(order: schemas.OrderCreate, token: str, buyer_uuid: str = None, db: Session = Depends(get_db)):
+def creat_order(order: schemas.OrderCreate, token: str, db: Session = Depends(get_db)):
     try:
-        db_article = create_order_products(db=db, obj_in=order, token=token, buyer_uuid=buyer_uuid)
+        db_article = create_order_products(db=db, obj_in=order, token=token)
         return {"message": "Order created successfully", "order": db_article}
     except HTTPException as e:
         raise e
@@ -123,6 +123,17 @@ def cancel_order(
         )
         return {"message": "order cancelled with success!"}
 
+    except HTTPException as e:
+        raise e
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"{str(e)}")
+
+
+@router.post("/buyer/link_to_order{token}")
+def link_bayer_to_order(token: str, order_uuid: str, db: Session = Depends(get_db)):
+    try:
+        link_bayer_to_order_crud(db=db, order_uuid=order_uuid, token=token)
+        return {"message": "Buyer link to the order successfully"}
     except HTTPException as e:
         raise e
     except Exception as e:

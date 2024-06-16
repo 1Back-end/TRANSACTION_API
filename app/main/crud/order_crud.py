@@ -11,7 +11,7 @@ from app.main.services import auth, storage
 from app.main.models.order import OrderStatusType
 
 
-def create_order_products(db: Session, obj_in: schemas.OrderCreate, token: str, buyer_uuid: str):
+def create_order_products(db: Session, obj_in: schemas.OrderCreate, token: str):
     valid_token = auth.get_auth_token(token=token)
     print("=======", obj_in.dict())
     if valid_token is not None:
@@ -25,7 +25,7 @@ def create_order_products(db: Session, obj_in: schemas.OrderCreate, token: str, 
             total_order_quantity += product.quantity
             total_order_price += artile.price * product.quantity
         order = models.Order(uuid=str(uuid.uuid4()), user_uuid=valid_token['sub'], total_quantity=total_order_quantity,
-                             total_price=total_order_price, code=code, buyer_uuid=buyer_uuid)
+                             total_price=total_order_price, code=code)
         db.add(order)
         db.flush()
         index = 0
@@ -60,6 +60,7 @@ def get_order_products(
         print(f"storage_uuids[0]:{storage_uuids[0]}")
 
         user = auth.get_user(token=token, user_uuid=order.user_uuid)
+        print(f".........................user:{user}")
         storages = storage.get_storages(storage_uuids=storage_uuids)
         # print(f"....................order:{order.order_products}")
         for order_product in order.order_products:
@@ -91,7 +92,7 @@ def get_order_with_pagination(
     obj = []
     if valid_token is not None:
 
-        user = auth.get_user(token=token, user_uuid=decode_access_token(token)['sub'])
+
         orders = db.query(models.Order). \
             filter(
             or_(
@@ -124,6 +125,12 @@ def get_order_with_pagination(
         total = orders.count()
         orders = orders.offset((page - 1) * per_page).limit(per_page).all()
         for order in orders:
+            userId = decode_access_token(token)['sub']
+            print(f".............command uuid:{order.uuid}")
+            print(f".............buyer uuid frere{order.buyer_uuid}")
+            second_user_id: str = order.user_uuid if order.buyer_uuid == userId else order.buyer_uuid
+            print("........first: {}, second: {}".format(userId, second_user_id))
+            users = auth.get_users(token=token, uuid=second_user_id)
             storage_uuids = [image.storage_uuid for order_product in order.order_products for image in
                              order_product.article.images]
             print(f"storage_uuids[0]:{storage_uuids[0]}")
@@ -136,10 +143,11 @@ def get_order_with_pagination(
                         if image["uuid"] == article_file.storage_uuid:
                             article_storages.append(image)
                 order_product.article.storages = article_storages
+
             obj.append({
                 "order": order,
-                "user": user,
-                "buyer": order.buyer
+                "user": users[0 if userId == order.user_uuid else 1],
+                "buyer": users[1 if userId == order.user_uuid else 0],
             })
         print(f"....................the value of data in datalist:{obj}")
 
@@ -160,7 +168,7 @@ def get_order_with_uuid(
     valid_token = auth.get_auth_token(token=token)
     if valid_token is not None:
         order = db.query(models.Order).filter(models.Order.uuid == order_uuid).first()
-        user = auth.get_user(token=token, user_uuid=decode_access_token(token)['sub'])
+        user = auth.get_user(token=token, user_uuid=order.user_uuid)
         buyer: models.BuyerInfo = order.buyer
         if not order:
             raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="order not found")
