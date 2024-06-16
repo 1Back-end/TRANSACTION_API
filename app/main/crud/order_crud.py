@@ -5,7 +5,7 @@ from sqlalchemy.orm import Session
 from app.main import models, schemas
 from fastapi import HTTPException, status
 import uuid
-from sqlalchemy import or_
+from sqlalchemy import or_, and_
 from app.main.core.security import decode_access_token, generate_code
 from app.main.services import auth, storage
 from app.main.models.order import OrderStatusType
@@ -95,26 +95,30 @@ def get_order_with_pagination(
 
     orders = db.query(models.Order). \
         filter(
-        or_(
-            models.Order.user_uuid == decode_access_token(token)['sub'],
-            models.Order.buyer_uuid == decode_access_token(token)['sub'],
+        and_(
+            models.Order.buyer_uuid != None,
+            or_(
+                models.Order.user_uuid == decode_access_token(token)['sub'],
+                models.Order.buyer_uuid == decode_access_token(token)['sub'],
+            )
         )
+
     )
     print(orders)
     if order_type and order_type == 'SELLED':
-        orders = orders.filter(models.Order.user_uuid == decode_access_token(token)['sub'])
+        orders = orders.filter(and_(models.Order.user_uuid == decode_access_token(token)['sub'], models.Order.buyer_uuid != None))
 
     if order_type and order_type == 'BUYED':
-        orders = orders.filter(models.Order.buyer_uuid == decode_access_token(token)['sub'])
+        orders = orders.filter(and_(models.Order.buyer_uuid == decode_access_token(token)['sub'], models.Order.buyer_uuid != None))
 
     if order_status and order_status == OrderStatusType.PAID:
-        orders = orders.filter(models.Order.status == OrderStatusType.PAID)
+        orders = orders.filter(and_(models.Order.status == OrderStatusType.PAID, models.Order.buyer_uuid != None))
 
     if order_status and order_status == OrderStatusType.CANCELLED:
-        orders = orders.filter(models.Order.status == OrderStatusType.CANCELLED)
+        orders = orders.filter(and_(models.Order.status == OrderStatusType.CANCELLED, models.Order.buyer_uuid != None))
 
     if order_status and order_status == OrderStatusType.PENDING:
-        orders = orders.filter(models.Order.status == OrderStatusType.PENDING)
+        orders = orders.filter(and_(models.Order.status == OrderStatusType.PENDING, models.Order.status == OrderStatusType.PENDING))
 
     if order and order.lower() == "asc":
         orders = orders.order_by(getattr(models.Order, "date_added").asc())
