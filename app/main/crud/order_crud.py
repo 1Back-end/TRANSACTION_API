@@ -131,7 +131,7 @@ def get_order_with_pagination(
         second_user_id: str = order.user_uuid if order.buyer_uuid == userId else order.buyer_uuid
         print("........first: {}, second: {}".format(userId, second_user_id))
         users = auth.get_users(token=token, uuid=second_user_id)
-        if not users :
+        if not users:
             raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="user not found")
         storage_uuids = [image.storage_uuid for order_product in order.order_products for image in
                          order_product.article.images]
@@ -168,13 +168,22 @@ def get_order_with_uuid(
         order_uuid: str,
 ):
     valid_token = auth.get_auth_token(token=token)
-    if valid_token is not None:
-        order = db.query(models.Order).filter(models.Order.uuid == order_uuid).first()
-        user = auth.get_user(token=token, user_uuid=order.user_uuid)
-        buyer: models.BuyerInfo = order.buyer
-        if not order:
-            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="order not found")
-        return {"order": order, "user": user, "buyer": buyer}
+    if not valid_token:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="user is not valid")
+    order = db.query(models.Order).filter(models.Order.uuid == order_uuid).first()
+    userId = decode_access_token(token)['sub']
+    print(f".............command uuid:{order.uuid}")
+    print(f".............buyer uuid frere{order.buyer_uuid}")
+    second_user_id: str = order.user_uuid if order.buyer_uuid == userId else order.buyer_uuid
+    print("........first: {}, second: {}".format(userId, second_user_id))
+    users = auth.get_users(token=token, uuid=second_user_id)
+    if not users:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="user not found")
+    if not order:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="order not found")
+    return {"order": order,
+            "user": users[0 if userId == order.user_uuid else 1],
+            "buyer": users[1 if userId == order.user_uuid else 0]}
 
 
 def mark_order_as_cancelled(
