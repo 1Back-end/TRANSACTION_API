@@ -50,7 +50,7 @@ class ArticleFile(Base):
     """
 
     __tablename__ = 'articles_files'
-
+    uuid: str = Column(String(255), primary_key=True, unique=True)
     article_uuid = Column(String, ForeignKey('articles.uuid', ondelete="CASCADE"), nullable=False)
     storage_uuid = Column(String, nullable=False)
 
