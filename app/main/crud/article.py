@@ -33,6 +33,7 @@ def create_article(db: Session, articles: list[schemas.ArticleCreate], token: st
             db.flush()
             for storage_uuid in article.storage_uuid:
                 article_file = models.ArticleFile(
+                    uuid=str(uuid.uuid4()),
                     article_uuid=db_article.uuid,
                     storage_uuid=storage_uuid
                 )
