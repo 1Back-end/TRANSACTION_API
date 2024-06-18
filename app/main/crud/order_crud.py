@@ -139,7 +139,6 @@ def get_order_with_pagination(
             raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="user not found")
         storage_uuids = [image.storage_uuid for order_product in order.order_products for image in
                          order_product.article.images]
-        print(f"storage_uuids[0]:{storage_uuids[0]}")
         storages = storage.get_storages(storage_uuids=storage_uuids)
         # print(f"....................order:{order.order_products}")
         for order_product in order.order_products:

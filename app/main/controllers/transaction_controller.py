@@ -129,7 +129,7 @@ def cancel_order(
         raise HTTPException(status_code=500, detail=f"{str(e)}")
 
 
-@router.post("/buyer/link_to_order{token}")
+@router.post("/buyer/link_to_order/{token}")
 def link_bayer_to_order(token: str, order_uuid: str, db: Session = Depends(get_db)):
     try:
         link_bayer_to_order_crud(db=db, order_uuid=order_uuid, token=token)
