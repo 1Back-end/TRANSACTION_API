@@ -34,7 +34,7 @@ def link_bayer_to_order_crud(db: Session, token: str, order_uuid: str) -> Any:
         .filter(models.Order.buyer_uuid == None).first()
     if not order:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="order not found")
-    if order.buyer_uuid == order.user_uuid:
+    if decode_access_token(token)['sub'] == order.user_uuid:
         raise HTTPException(status_code=status.HTTP_412_PRECONDITION_FAILED, detail="You cannot be the buyer of an order you have created.")
     order.buyer_uuid = decode_access_token(token)['sub']
     db.add(order)
