@@ -55,9 +55,12 @@ def get_order_products(
     valid_token = auth.get_auth_token(token=token)
     if valid_token is not None:
         order: models.Order = db.query(models.Order, ).filter(models.Order.code == code).first()
+
+        if not order:
+            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="This code is not valid")
+
         storage_uuids = [image.storage_uuid for order_product in order.order_products for image in
                          order_product.article.images]
-        print(f"storage_uuids[0]:{storage_uuids[0]}")
 
         user = auth.get_user(token=token, user_uuid=order.user_uuid)
         print(f".........................user:{user}")
@@ -70,9 +73,6 @@ def get_order_products(
                     if image["uuid"] == article_file.storage_uuid:
                         article_storages.append(image)
             order_product.article.storages = article_storages
-
-        if not order:
-            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="this code is not valid")
 
         return {"order": order, "user": user}
 
