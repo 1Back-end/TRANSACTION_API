@@ -31,7 +31,7 @@ def link_bayer_to_order_crud(db: Session, token: str, order_uuid: str) -> Any:
     if not user:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="token is not valid")
     order: models.Order = db.query(models.Order).filter(models.Order.uuid == order_uuid)\
-        .filter(models.Order.buyer_uuid is None).first()
+        .filter(models.Order.buyer_uuid == None).first()
     if not order:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="order not found")
     if order.buyer_uuid == order.user_uuid:
