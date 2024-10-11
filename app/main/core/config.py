@@ -24,7 +24,7 @@ class ConfigClass(BaseSettings):
     ACCESS_TOKEN_EXPIRE_MINUTES: int = int(get_secret("ACCESS_TOKEN_EXPIRE_MINUTES", 60 * 24 * 365))
 
     SQLALCHEMY_DATABASE_URL: str = get_secret("SQLALCHEMY_DATABASE_URL",
-                                              'postgresql://postgres:postgres19J2140@localhost:5432'
+                                              'postgresql://postgres:2002@localhost:5432'
                                               '/transaction_epursa')
 
     SQLALCHEMY_POOL_SIZE: int = 100
@@ -51,8 +51,8 @@ class ConfigClass(BaseSettings):
     API_STR: str = get_secret("API_STR", "/api/v1/transaction")
     AUTH_API_URL: str = get_secret("AUTH_API_URL", "http://45.130.104.46:5003/api/v1/authentication")
     # AUTH_API_URL: str = get_secret("AUTH_API_URL", "http://localhost:5305/api/v1/authentication")
-    STORAGE_API_URL: str = get_secret("STORAGE_API_URL", "http://45.130.104.46:5008/api/v1/storage")
-    # STORAGE_API_URL: str = get_secret("STORAGE_API_URL", "http://localhost:5307/api/v1/storage")
+    # STORAGE_API_URL: str = get_secret("STORAGE_API_URL", "http://45.130.104.46:5008/api/v1/storage")
+    STORAGE_API_URL: str = get_secret("STORAGE_API_URL", "http://localhost:5307/api/v1/storage")
     PROJECT_NAME: str = get_secret("PROJECT_NAME", "EPURSA TRANSACTION API")
     PROJECT_VERSION: str = get_secret("PROJECT_VERSION", "1.0.0")
 
